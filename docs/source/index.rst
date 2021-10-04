@@ -26,7 +26,7 @@ Datasets
 ---------
 
 
-1. `HDM05 <https://www.mixamo.com/#/> http://resources.mpi-inf.mpg.de/HDM05/index.html`_
+1. `HDM05 <http://resources.mpi-inf.mpg.de/HDM05/index.html>`_
 2. `Mixamo selected <https://www.mixamo.com/#/>`_
 3. `Human3.6M <http://vision.imar.ro/human3.6m/description.php>`_
 4. `NTU rgbd <https://github.com/shahroudy/NTURGB-D>`_
