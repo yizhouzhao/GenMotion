@@ -43,3 +43,11 @@ Models:
 3. `MT-VAE (2018) <https://openaccess.thecvf.com/content_ECCV_2018/papers/Xinchen_Yan_Generating_Multimodal_Human_ECCV_2018_paper.pdf>`_ `[code] <https://github.com/xcyan/eccv18_mtvae>`_ Human3.6M
 4. `Motion Transformer <https://chuhang.github.io/files/publications/2008.08171.pdf>`_ [code?] [Dataset?]
 5. `HM-VAE (2021) <https://arxiv.org/pdf/2106.04004.pdf>`_ `[code?]`_ [Dataset?]
+
+
+Rendering and visualization:
+------------
+
+1. `Maya <https://www.autodesk.com/products/maya/overview>`_
+2. `Blender <https://www.blender.org/>`_
+3. `C4D <https://www.maxon.net/en/cinema-4d>`_
