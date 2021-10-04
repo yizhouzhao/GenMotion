@@ -1,7 +1,7 @@
 Welcome to GenMotion's documentation!
 ===================================
 
-**GemMotion** (/lu'make/) is a Python library for making skeletal animations.
+**GenMotion** (/gen'motion/) is a Python library for making skeletal animations.
 It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
 and offers a *simple* and *intuitive* API.
 
