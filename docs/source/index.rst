@@ -1,53 +1,61 @@
+.. figure:: ../images/title.gif
+   :alt: Title image
+   :width: 100%
+
 Welcome to GenMotion's documentation!
-===================================
+========================================
 
 **GenMotion** (/gen'motion/) is a Python library for making skeletal animations.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+We present a novel energy-based framework to sample and synthesize animations by associating the characters' body motions, facial expressions, and social relations. It also comes with a easy-to-use API.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+The source code is available on `Github <https://https://github.com/yizhouzhao/GenMotion>`_
 
 .. note::
 
    This project is under active development.
 
-Contents
---------
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Getting Started
+
+   installation
 
 .. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: User Guide
 
-   usage
-   dataset
-   api
+   compatability
+   api 
+   examples
+   citation
 
+Features of GenMotion
+---------------------
+Here are some of the features of GenMotion:
 
-Datasets
----------
+Motion Generation
+^^^^^^^^^^^^^^^^^
 
+Dramatic progress has been made in animating individual characters. 
+However, we still lack automatic control over activities between characters, especially those involving interactions.
 
-1. `HDM05 <http://resources.mpi-inf.mpg.de/HDM05/index.html>`_
-2. `Mixamo selected <https://www.mixamo.com/#/>`_
-3. `Human3.6M <http://vision.imar.ro/human3.6m/description.php>`_
-4. `NTU rgbd <https://github.com/shahroudy/NTURGB-D>`_
-5.  `Social Affordance <https://www.tshu.io/SocialAffordance/index.html>`_
-6. `Mocap CMU (2007) <http://mocap.cs.cmu.edu/>`_
-7. `AMASS (2019) <https://amass.is.tue.mpg.de/login.php>`_
+.. image:: ../images/motion.png
+   :alt: Motion image
+   :width: 100%
 
+Emotion Generation
+^^^^^^^^^^^^^^^^^^
+.. image:: ../images/emotion.png
+   :alt: Emotion image
+   :width: 100%
 
-Models:
----------
+Incorporating Social Relations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. `MoGlow (2020) <https://arxiv.org/pdf/2106.04004.pdf>`_ `[code] <https://github.com/simonalexanderson/MoGlow>`_ HDM05, Mocap,
-2. `MotionVAE (2020) <https://dl.acm.org/doi/pdf/10.1145/3386569.3392422>`_ `[code] <https://github.com/electronicarts/character-motion-vaes>`_ ``[Dataset?]
-3. `MT-VAE (2018) <https://openaccess.thecvf.com/content_ECCV_2018/papers/Xinchen_Yan_Generating_Multimodal_Human_ECCV_2018_paper.pdf>`_ `[code] <https://github.com/xcyan/eccv18_mtvae>`_ Human3.6M
-4. `Motion Transformer <https://chuhang.github.io/files/publications/2008.08171.pdf>`_ [code?] [Dataset?]
-5. `HM-VAE (2021) <https://arxiv.org/pdf/2106.04004.pdf>`_ `[code?]`_ [Dataset?]
+.. image:: ../images/relation.png
+   :alt: Social relation image
+   :width: 100%
 
-
-Rendering and visualization:
-------------
-
-1. `Maya <https://www.autodesk.com/products/maya/overview>`_
-2. `Blender <https://www.blender.org/>`_
-3. `C4D <https://www.maxon.net/en/cinema-4d>`_
+Our  approach can be useful for the tasks including but not limitedto: i) assisting animators to make keyframe animations in-cluding character poses and facial expressions. ii) helpinggame developers generate vivid NPC interaction events; iii)offering better emotional intelligence for VR agents.
