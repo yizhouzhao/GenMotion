@@ -27,3 +27,10 @@ bdata = np.load(amass_npz_file)
 And look at keys into **bdata**
 
 ![PythonLook](imgs/python_look.png)
+
+
+## FAQS
+
+https://files.is.tue.mpg.de/black/talks/SMPL-made-simple-FAQs.pdf
+
+https://meshcapade.wiki/SMPL#smpl-x
