@@ -15,11 +15,11 @@ https://docs.readthedocs.io/en/stable/tutorial/
 |             | Maya | C4D | Blender |
 | ----------- | ----------- |  ----------- | ----------- |
 | HDM05      | [Done] 10/06       | | |
-| Mocap   | 10/06        | | |
+| Mocap   | [Done] 10/07        | | |
 | Human3.6m   |        | | |
 | Social   |        | | |
 | NTU rgbd   |        | | |
-| AMASS   |         | | |
+| AMASS   |  [Done] 10/08      | | |
 | Mixamo   | [Done]        | | |
 
 ## 2. Models re-implementation x Dataset
