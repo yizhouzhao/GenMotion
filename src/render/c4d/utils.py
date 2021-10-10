@@ -63,7 +63,7 @@ def simpleServer():
     with conn:
         print('Connected by', addr)
         while True:
-            data = conn.recv(1024).decode("utf-8") 
+            data = conn.recv(10240).decode("utf-8") 
             #if not data:
             #    break
             if data:
@@ -77,7 +77,7 @@ def simpleServer():
                     print("wrong command:", data)
                     conn.sendall("wrong command".encode()) # data.encode()
 
-            time.sleep(1)
+            #time.sleep(1)
     
     print("Disconnected")
 
@@ -158,6 +158,7 @@ joint_name = "f_avg_" + SMPL_H_SKELETON[0]
 
 def RegisterJoints(joint):
     register_command = [
+        "{} = doc.SearchObject(\"{}\")".format(joint,joint),
         "{}_rX = c4d.CTrack({}, c4d.DescID(c4d.DescLevel(c4d.ID_BASEOBJECT_REL_ROTATION, c4d.DTYPE_VECTOR, 0), c4d.DescLevel(c4d.VECTOR_X, c4d.DTYPE_REAL, 0)))".format(joint, joint),
         "{}_rY = c4d.CTrack({}, c4d.DescID(c4d.DescLevel(c4d.ID_BASEOBJECT_REL_ROTATION, c4d.DTYPE_VECTOR, 0), c4d.DescLevel(c4d.VECTOR_Y, c4d.DTYPE_REAL, 0)))".format(joint, joint),
         "{}_rZ = c4d.CTrack({}, c4d.DescID(c4d.DescLevel(c4d.ID_BASEOBJECT_REL_ROTATION, c4d.DTYPE_VECTOR, 0), c4d.DescLevel(c4d.VECTOR_Z, c4d.DTYPE_REAL, 0)))".format(joint, joint),
