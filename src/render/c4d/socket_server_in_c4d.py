@@ -1,4 +1,4 @@
-# import c4d
+import c4d
 import socket
 import time
 

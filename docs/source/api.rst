@@ -7,7 +7,7 @@ API
 #. HELLO
 #. HELLO2
 
-.. automodule:: render.c4d.socket_server_in_c4d
+.. automodule:: test
     :members:
     :private-members:
     :inherited-members:
