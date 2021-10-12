@@ -12,3 +12,8 @@ API
     :private-members:
     :inherited-members:
     :show-inheritance:
+
+.. toctree::
+    api/api_blender
+    api/api_maya
+    api/api_c4d
