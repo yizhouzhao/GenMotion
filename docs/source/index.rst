@@ -27,8 +27,9 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
    :caption: User Guide
 
    compatability
-   api 
+   genmotion_api 
    examples
+   tutorials
    citation
 
 Features of GenMotion
