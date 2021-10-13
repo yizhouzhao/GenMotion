@@ -4,6 +4,13 @@ import socket
 
 # socket client controller
 class MayaController:
+    """
+    This is controller to `remotely` control Maya to make character animations. 
+    The default local host is *127.0.0.1*
+
+    Args:
+        PORT (int): port to socket connection;
+    """
     def __init__(self, PORT = 12345):
         # connect to Maya server
         HOST = '127.0.0.1'  # Symbolic name meaning the local host
