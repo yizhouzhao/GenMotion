@@ -13,11 +13,5 @@ API
     :inherited-members:
     :show-inheritance:
 
-.. automodule:: render.maya.utils
-    :members:
-    :private-members:
-    :inherited-members:
-    :show-inheritance:
-
 .. toctree::
     api/genmotion_render

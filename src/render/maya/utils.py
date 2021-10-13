@@ -54,21 +54,28 @@ class MayaController:
 
     #--------------------------------SET-----------------------------------------
     def SetNewScene(self):
-        '''
-        Set new Maya empty scene
-        :return:
-        '''
+        """Set new Maya empty scene
+        """
         send_message = "file -f -new;"
         recv_message = self.SendCommand(send_message)
 
     def SetCurrentTimeFrame(self, time_frame: int):
+        """Set timeline in the Maya scene
+
+        :param time_frame: key frame
+        :type time_frame: int
+        """
         send_message = "currentTime -edit" + " " + str(time_frame) + ";"
         recv_message = self.SendCommand(send_message)
 
     def SetObjectWorldTransform(self, object_name: str, location: list):
-        '''
-        Set world absolute location for object with location [x, y, z]
-        '''
+        """Set world absolute location for object with location [x, y, z]
+
+        :param object_name: the name of the object in hierarchy view
+        :type object_name: str
+        :param location: location in list [x, y, z]
+        :type location: list
+        """
         send_message = "select -replace " + object_name + ";"
         send_message += "move -absolute " + str(location[0]) + " " + str(location[1]) + " " + str(location[2]) + ";"
         recv_message = self.SendCommand(send_message)
