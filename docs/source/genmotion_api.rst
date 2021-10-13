@@ -14,6 +14,4 @@ API
     :show-inheritance:
 
 .. toctree::
-    api/render/api_blender
-    api/render/api_maya
-    api/render/api_c4d
+    api/genmotion_render
