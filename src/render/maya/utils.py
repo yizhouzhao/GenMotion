@@ -14,6 +14,8 @@ class MayaController:
     :ivar client: socket client
     """
     def __init__(self, PORT = 12345):
+        """Constructor method
+        """
         # connect to Maya server
         HOST = '127.0.0.1'  # Symbolic name meaning the local host
         #PORT = PORT  # Arbitrary non-privileged port
@@ -24,6 +26,11 @@ class MayaController:
         self.client.connect(ADDR)
 
     def SendCommand(self, command: str):
+        """Send a string command to the socket server (Maya side)
+
+        :param command: a string command
+        :type command: str
+        """
         # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # client.connect(ADDR)
         command = command.encode()  # the command from external editor to maya
@@ -38,6 +45,8 @@ class MayaController:
         return ret
 
     def Close(self):
+        """Close socket client
+        """
         self.client.close()
 
     def __del__(self):
