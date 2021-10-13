@@ -1,9 +1,10 @@
-version: 2
+version: 3
 
 python:
   version: "3.8"
   install:
     - method: pip
+    - requirements: docs/requirements.txt
       path: .
 
 sphinx:
