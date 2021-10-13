@@ -3,9 +3,7 @@ version: 2
 python:
   version: "3.8"
   install:
-    - method: pip
     - requirements: docs/requirements.txt
-      path: .
 
 sphinx:
   fail_on_warning: true
