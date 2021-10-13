@@ -1,4 +1,4 @@
-Tutorial: how to render generated animations in Maya
+How to render generated animations in Maya
 ======================================================
 
 # Maya render animations from AMASS dataset
@@ -7,5 +7,5 @@ Tutorial: how to render generated animations in Maya
    :maxdepth: 2
    :caption: Contents:
    
-   Maya render AMASS animations
+   maya/Maya render AMASS animations
    

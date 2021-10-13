@@ -1,4 +1,4 @@
-Tutorial: how to render generated animations in Cinema 4D
+How to render generated animations in Cinema 4D
 ======================================================
 
    

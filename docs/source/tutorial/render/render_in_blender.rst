@@ -1,4 +1,4 @@
-Tutorial: how to render generated animations in Blender
+How to render generated animations in Blender
 ======================================================
 
    
