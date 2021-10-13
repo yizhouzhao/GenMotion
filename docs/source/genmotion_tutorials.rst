@@ -4,4 +4,6 @@ Tutorials
 Here are some examples for using GenMotion:
 
 .. toctree::
-    tutorial/render_in_maya.rst
+    :numbered:
+
+    tutorial/render/render_in_maya.rst
