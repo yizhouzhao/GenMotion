@@ -8,8 +8,10 @@ class MayaController:
     This is controller to `remotely` control Maya to make character animations. 
     The default local host is *127.0.0.1*
 
-    Args:
-        PORT (int): port to socket connection;
+    :param PORT: port to connect to the local socket server, defaults to 0
+    :type PORT: int 
+
+    :ivar client: socket client
     """
     def __init__(self, PORT = 12345):
         # connect to Maya server
