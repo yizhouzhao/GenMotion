@@ -5,4 +5,5 @@ Tutorial: how to render generated animations in Maya
    :maxdepth: 2
    :caption: Contents:
 
-   render/Maya render test
+    Maya render AMASS animations
+   
