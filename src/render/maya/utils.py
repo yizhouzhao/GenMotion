@@ -241,6 +241,7 @@ class MayaController:
     def GetTimeSliderRange(self):
         '''
         Get the range of time slider
+        
         :return: [min, max] representing the minimum and maximum values of the timeline
         :rtype: list
         '''
