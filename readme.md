@@ -1,26 +1,22 @@
-Template for the Read the Docs tutorial
-=======================================
+GenMotion
+==========
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
 
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+Please refer to the [Documentation](https://genmotion.readthedocs.io/en/latest/index.html)
 
 
 # Progress
 
 ## 1. Rendering tool x Dataset
-|             | Maya | C4D | Blender |
-| ----------- | ----------- |  ----------- | ----------- |
-| HDM05      | [Done] 10/06       | | |
-| Mocap   | [Done] 10/07        | | |
-| Human3.6m   |        | | |
-| Social   |        | | |
-| NTU rgbd   |        | | |
-| AMASS   |  [Done] 10/08      | | |
-| Mixamo   | [Done]        | | |
+|               | Maya          | C4D           | Blender       |
+| -----------   | -----------   |  -----------  | -----------   |
+| HDM05         | [Done] 10/06  |               |               |
+| Mocap         | [Done] 10/07  |               |               |
+| Human3.6m     |               |               |               |
+| Social        |               |               |               |
+| NTU rgbd      |               |               |               |
+| AMASS         | [Done] 10/08  |               | [Done] 10/14  |
+| Mixamo        | [Done]        |               | [Done]        |
 
 ## 2. Models re-implementation x Dataset
 
