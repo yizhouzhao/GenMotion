@@ -8,4 +8,5 @@ How to render generated animations in Maya
    :caption: Contents:
    
    maya/Maya render AMASS animations
+   maya/Maya render HDM(or Mocap) animations
    
