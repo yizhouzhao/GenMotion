@@ -36,12 +36,12 @@ def set_joint_rotation_keyframe(joint: Any, data: List[float], frame: int, mode:
         joint.rotation_quaternion = data
         joint.keyframe_insert(data_path="rotation_quaternion", frame=frame)
 
-def set_amass_animation(data):
+def set_amass_animation(data, frame_distance=1):
     # set frame properties
     total_frame = int(data["mocap_time_length"] * data["mocap_frame_rate"])
     bpy.data.scenes["Scene"].frame_start = 0
     bpy.data.scenes["Scene"].frame_end = total_frame
-    bpy.data.objects['SMPLX-neutral'].select_set(True)
+    bpy.context.view_layer.objects.active = bpy.data.objects['SMPLX-neutral']
     bpy.ops.object.mode_set(mode="POSE")
     bpy.context.scene.render.fps = round(float(data["mocap_frame_rate"]))
     
@@ -52,7 +52,7 @@ def set_amass_animation(data):
     for i, joint_name in SMPL_X_SKELTON2.items():
         character.pose.bones[joint_name].rotation_mode = "XYZ"
         
-    for frame in tqdm(range(total_frame)):
+    for frame in tqdm(range(0, total_frame, frame_distance)):
         # set root location and rotation
         set_joint_location_keyframe(root, data["trans"][frame], frame)
         set_joint_rotation_keyframe(root, data["root_orient"][frame], frame)
@@ -61,7 +61,7 @@ def set_amass_animation(data):
         for i, joint_name in SMPL_X_SKELTON2.items():
             set_joint_rotation_keyframe(character.pose.bones[joint_name], data["poses"][frame][i * 3: (i + 1) * 3], frame)  
 
-def set_amc_animation(amc_file_path: str):
+def set_amc_animation(amc_file_path: str, frame_distance=1):
     with open(amc_file_path, "rb") as f:
         cur_frame = 0
         character = bpy.data.objects["Armature"]
@@ -70,7 +70,7 @@ def set_amc_animation(amc_file_path: str):
         for line in tqdm(f.readlines()):
             if line.strip().isdigit():
                 cur_frame = int(line)
-            elif cur_frame > 0 and cur_frame % 100 == 0:
+            elif cur_frame > 0 and cur_frame % frame_distance == 0:
                 data = line.decode("utf-8").strip().split()
                 joint_name = data[0]
                 joint = character.pose.bones[joint_name]
