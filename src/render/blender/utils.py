@@ -6,20 +6,54 @@ from dataset.hdm05_params import ASF_JOINT2DOF
 from dataset.amass_params import SMPL_X_SKELTON2
 
 def import_fbx(file_path: str):
+    """Import fbx model into blender
+    
+    :param file_path: path to the fbx file
+    :type file_path: str
+    """
     bpy.ops.import_scene.fbx(filepath=file_path)
         
 def import_smplx(gender: str):
+    """Import smplx model into blender
+    
+    :param gender: gender of file 
+    :type gender: str
+    """
     bpy.data.window_managers["WinMan"].smplx_tool.smplx_gender = gender
     bpy.ops.scene.smplx_add_gender()
 
 def clear_all_animation():
+    """Clear all keyframes in animation
+    """
     bpy.context.active_object.animation_data_clear()
 
 def set_joint_location_keyframe(joint: Any, data: List[float], frame: int):
+    """Insert a keyframe for a specified joint location
+    
+    :param joint: Object to the joint
+    :type joint: Object
+    :param data: data of the location of joint
+    :type data: List[float]
+    :param joint: the frame that should insert the key
+    :type joint: int
+    """
     joint.location = data
     joint.keyframe_insert(data_path="location", frame=frame)
 
 def set_joint_rotation_keyframe(joint: Any, data: List[float], frame: int, mode: str ="euler", axis: Optional[List[str]]=None):
+    """Insert a keyframe for a specified joint rotation
+    
+    :param joint: Object to the joint
+    :type joint: Object
+    :param data: data of the rotation of joint
+    :type data: List[float]
+    :param joint: the frame that should insert the key
+    :type mode: int
+    :param mode: rotation mode (select from `euler` and `quaternion`)
+    :type joint: str
+    :param axis: the specifed axis that data corresponds to   
+    :type axis: List[str]
+    """
     if mode == "euler":
         if axis:
             for i in range(len(axis)):
@@ -37,6 +71,11 @@ def set_joint_rotation_keyframe(joint: Any, data: List[float], frame: int, mode:
         joint.keyframe_insert(data_path="rotation_quaternion", frame=frame)
 
 def set_amass_animation(data, frame_distance=1):
+    """set animation with data of amass form
+    
+    :param data: amass data
+    :param frame_distance: set keyframe across every frame_distance, default is 1
+    """
     # set frame properties
     total_frame = int(data["mocap_time_length"] * data["mocap_frame_rate"])
     bpy.data.scenes["Scene"].frame_start = 0
@@ -62,6 +101,12 @@ def set_amass_animation(data, frame_distance=1):
             set_joint_rotation_keyframe(character.pose.bones[joint_name], data["poses"][frame][i * 3: (i + 1) * 3], frame)  
 
 def set_amc_animation(amc_file_path: str, frame_distance=1):
+    """set animation with data of amc form
+
+    :param data: file path to amc data
+    :param frame_distance: set keyframe across every frame_distance, default is 1
+    """
+    
     with open(amc_file_path, "rb") as f:
         cur_frame = 0
         character = bpy.data.objects["Armature"]
