@@ -6,4 +6,4 @@ How to render generated animations in Blender
    :caption: Contents:
    
    blender/AMASS
-   blender/HDM5
+   blender/HDM05
