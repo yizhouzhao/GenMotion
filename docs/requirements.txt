@@ -1,2 +1,4 @@
 ipykernel
 nbsphinx
+tqdm
+numpy
