@@ -5,4 +5,5 @@ How to render generated animations in Blender
    :maxdepth: 2
    :caption: Contents:
    
-   blender/amass
+   blender/AMASS
+   blender/HDM05

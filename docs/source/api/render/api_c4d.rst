@@ -1,4 +1,4 @@
 Render Anmations in Cinema 4D
 ========================================
 
-Here are some examples for using GenMotion:
+This part describes the methods/classes we apply to render animations in `Cinema 4D`
