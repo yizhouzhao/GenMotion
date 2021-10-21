@@ -9,6 +9,27 @@ month = {September},
 year = {2018}
 }
 
+@inproceedings{habibie2017recurrent,
+  title={A recurrent variational autoencoder for human motion synthesis},
+  author={Habibie, Ikhsanul and Holden, Daniel and Schwarz, Jonathan and Yearsley, Joe and Komura, Taku},
+  booktitle={28th British Machine Vision Conference},
+  year={2017}
+}
+
+@inproceedings{guo2020action2motion,
+  title={Action2motion: Conditioned generation of 3d human motions},
+  author={Guo, Chuan and Zuo, Xinxin and Wang, Sen and Zou, Shihao and Sun, Qingyao and Deng, Annan and Gong, Minglun and Cheng, Li},
+  booktitle={Proceedings of the 28th ACM International Conference on Multimedia},
+  pages={2021--2029},
+  year={2020}
+}
+
+@article{yin2021graph,
+  title={Graph-based Normalizing Flow for Human Motion Generation and Reconstruction},
+  author={Yin, Wenjie and Yin, Hang and Kragic, Danica and Bj{\"o}rkman, M{\aa}rten},
+  journal={arXiv preprint arXiv:2104.03020},
+  year={2021}
+}
 @inproceedings{martinez2017human,
   title={On human motion prediction using recurrent neural networks},
   author={Martinez, Julieta and Black, Michael J and Romero, Javier},
