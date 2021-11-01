@@ -5,3 +5,4 @@ With the recent development of learning based methods,  many works have focused 
 
 .. toctree::
     learning/learning_rnn.rst
+    learning/actor.rst
