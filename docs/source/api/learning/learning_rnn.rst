@@ -1,7 +1,7 @@
 On human motion prediction using recurrent neural networks
 ================================================================================
 
-.. automodule:: render.humanmotionrnn.models
+.. automodule:: algorithm.humanmotionrnn.models
     :members:
 
 .. automodule:: algorithm.humanmotionrnn.params
