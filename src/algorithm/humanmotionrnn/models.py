@@ -15,7 +15,48 @@ import torch.nn.functional as F
 from .params import use_cuda
 
 class Seq2SeqModel(nn.Module):
-    """Sequence-to-sequence model for human motion prediction"""
+    """Sequence-to-sequence model for human motion prediction
+    
+    :param architecture: [basic, tied] whether to tie the decoder and decoder.
+    :type PORT: str
+
+    :param source_seq_len: lenght of the input sequence.
+    :type source_seq_len: int
+
+    :param target_seq_len: lenght of the target sequence.
+    :type target_seq_len: int
+
+    :param rnn_size: number of units in the rnn.
+    :type rnn_size: int
+
+    :param num_layers: number of rnns to stack.
+    :type num_layers: int
+
+    :param max_gradient_norm: gradients will be clipped to maximally this norm.
+    :type max_gradient_norm: float
+
+    :param batch_size: the size of the batches used during training;  the model construction is independent of batch_size, so it can be changed after initialization if this is convenient, e.g., for decoding.
+    :type batch_size: int
+       
+    # :param learning_rate: learning rate to start with.
+    # :type learning_rate: float
+
+    # :param learning_rate_decay_factor: decay learning rate by this much when needed.
+    # :type learning_rate_decay_factor: float
+
+    # :param loss_to_use: [supervised, sampling_based]. Whether to use ground truth in each timestep to compute the loss after decoding, or to feed back the prediction from the previous time-step.
+    # :type learning_rate_decay_factor: float
+    
+    :param number_of_actions: number of classes we have.
+    :type number_of_actions: int
+
+    :param one_hot: whether to use one_hot encoding during train/test (sup models). default true
+    :type one_hot: bool 
+
+    # :param residual_velocities: whether to use a residual connection that models velocities.
+    :param dtype: the data type to use to store internal variables; default torch.float32
+    
+    """
 
     def __init__(
         self,
@@ -35,28 +76,9 @@ class Seq2SeqModel(nn.Module):
         dropout=0.0,
         dtype=torch.float32,
         ):
-        """Create the model.
-
-    Args:
-      architecture: [basic, tied] whether to tie the decoder and decoder.
-      source_seq_len: lenght of the input sequence.
-      target_seq_len: lenght of the target sequence.
-      rnn_size: number of units in the rnn.
-      num_layers: number of rnns to stack.
-      max_gradient_norm: gradients will be clipped to maximally this norm.
-      batch_size: the size of the batches used during training;
-        the model construction is independent of batch_size, so it can be
-        changed after initialization if this is convenient, e.g., for decoding.
-      learning_rate: learning rate to start with.
-      learning_rate_decay_factor: decay learning rate by this much when needed.
-      loss_to_use: [supervised, sampling_based]. Whether to use ground truth in
-        each timestep to compute the loss after decoding, or to feed back the
-        prediction from the previous time-step.
-      number_of_actions: number of classes we have.
-      one_hot: whether to use one_hot encoding during train/test (sup models).
-      residual_velocities: whether to use a residual connection that models velocities.
-      dtype: the data type to use to store internal variables.
-    """
+        """
+        Create the model.
+        """
 
                          # hidden recurrent layer size
 
@@ -87,6 +109,13 @@ class Seq2SeqModel(nn.Module):
         self.fc1 = nn.Linear(self.rnn_size, self.input_size)
 
     def forward(self, encoder_inputs, decoder_inputs):
+        """
+        Forward method for the model
+
+        :param encoder_inputs: a tensor of shape [batch x length x dim]
+
+        :param decoder_inputs: a tensor of shape [batch x length x dim]
+        """
 
         def loop_function(prev, i):
             return prev
@@ -139,6 +168,11 @@ class Seq2SeqModel(nn.Module):
         return torch.transpose(outputs, 0, 1)
     
     def sample(self, encoder_inputs):
+        """
+        Sampling poses given the input
+
+        :param encoder_inputs: a tensor of shape [batch x length x dim]
+        """
 
         def loop_function(prev, i):
             return prev
