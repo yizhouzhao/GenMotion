@@ -1,19 +1,25 @@
-import os
-import numpy as np
-import matplotlib.pyplot as plt
+from typing import Tuple
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 from IPython.display import clear_output
-from typing import Callable, Optional
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data import Dataset, dataloader
+from torch.utils.data import dataloader
 from torch.nn.modules.conv import ConvTranspose1d
 from torch.nn import Module, Conv1d, Sequential, Dropout, MaxPool1d
 
 
 class MotionLSTM(Module):
+    """A Motion LSTM model for recurrent generation of motion sequence
+    
+    :param input_size: size of input vector
+    :type input_size: int
+
+    :param hidden_size: size of hidden state vector
+    :type hidden_size: int
+    """
+
     def __init__(self, input_size, hidden_size):
         super().__init__()
         self.input_size = input_size
@@ -21,15 +27,24 @@ class MotionLSTM(Module):
         self.W = nn.Parameter(torch.Tensor(input_size, hidden_size * 4))
         self.U = nn.Parameter(torch.Tensor(hidden_size, hidden_size * 4))
         self.bias = nn.Parameter(torch.Tensor(hidden_size * 4))
-        self.init_weights()
-                
-    def init_weights(self):
+        
         stdv = 1.0 / (self.hidden_size ** 0.5)
         for weight in self.parameters():
             weight.data.uniform_(-stdv, stdv)
+        
          
-    def forward(self, x, init_states=None, isSampling=False, output_frame = 0):
-        """Assumes x is of shape (batch, feature, sequence)"""
+    def forward(self, x, init_states: Tuple[torch.tensor, torch.tensor] = None, isSampling: bool = False, num_adding_frame: int = 0):
+        """Forward method for the model
+        
+        :param init_states: initial states for hidden and cell state vector
+        :type init_states: Tuple[torch.tensor, torch.tensor]
+
+        :param isSampling: whether we are doing sampling or training
+        :type isSampling: bool
+
+        :param num_adding_frame: number of frames to be additonally sampled (only useful in sampling mode, for training mode it should be set to 0)
+        :type num_adding_frame: int
+        """
         batch_size, _, sequence_len = x.size()
         hidden_seq = []
         if init_states is None:
@@ -39,7 +54,7 @@ class MotionLSTM(Module):
             h_t, c_t = init_states
          
         HS = self.hidden_size
-        for t in range(sequence_len + output_frame):
+        for t in range(sequence_len + num_adding_frame):
             x_t = x[:, :, t]
             # batch the computations into a single matrix multiplication
             gates = x_t @ self.W + h_t @ self.U + self.bias
@@ -56,20 +71,40 @@ class MotionLSTM(Module):
         hidden_seq = hidden_seq.contiguous()
         return hidden_seq, (h_t, c_t)
 
-    def sampling(self, x, output_frame, init_states=None):
-        return self.forward(x, init_states, True, output_frame)[0]
+    def sampling(self, x: torch.tensor, num_adding_frame: int, init_states: Tuple[torch.tensor, torch.tensor] = None):
+        """Sampling output given input sequence
+        
+        :param x: input sequence
+        :type x: torch.tensor
 
-class VAE_LSTM(Module):   
-    def __init__(self, joint_size: int, input_frame: int):
+        :param num_adding_frame: whether we are doing sampling or training
+        :type num_adding_frame: int
+
+        :param init_states: initial states for hidden and cell state vector
+        :type init_states: Tuple[torch.tensor, torch.tensor]
+        """
+        return self.forward(x, init_states, True, num_adding_frame)[0]
+
+class VAE_LSTM(Module): 
+    """VAE-LSTM model for motion sequence generation
+    
+    :param num_joints: number of joints in model 
+    :type num_joints: int
+
+    :param input_frame: number of frames to be additonally sampled
+    :type input_frame: int    
+    """
+
+    def __init__(self, num_joints: int, input_frame: int):
         super(VAE_LSTM, self).__init__()
 
-        self.joint_size = joint_size 
+        self.num_joints = num_joints 
         self.input_frame = input_frame
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         self.encoder1 = Sequential(
             Dropout(0.2),
-            Conv1d(in_channels=joint_size * 3, out_channels=64, kernel_size=25, padding=12),
+            Conv1d(in_channels=num_joints * 3, out_channels=64, kernel_size=25, padding=12),
             MaxPool1d(kernel_size=2)
         )
 
@@ -90,10 +125,15 @@ class VAE_LSTM(Module):
         self.decoder2 = Sequential(
             ConvTranspose1d(in_channels=128, out_channels=128, kernel_size=2, stride=2),
             Dropout(0.2),
-            Conv1d(in_channels=128, out_channels=joint_size * 3, kernel_size=25, padding=12),
+            Conv1d(in_channels=128, out_channels=num_joints * 3, kernel_size=25, padding=12),
         )
   
     def forward(self, x):
+        """Forward method for the model
+        
+        :param x: input motion sequence
+        :type x: torch.tensor
+        """
         x = F.elu(self.encoder1(x))
         x = F.elu(self.encoder2(x))
 
@@ -106,21 +146,45 @@ class VAE_LSTM(Module):
         x_hat = F.elu(self.decoder2(x_hat))
         return x_hat, mu, log_var
 
-    def generate(self, x, output_frame):
+    def sampling(self, x, num_adding_frame):
+        """Sampling output given input sequence
+        
+        :param num_adding_frame: number of frames to be additionally sampled 
+        :type num_adding_frame: int
+
+        :param num_adding_frame: whether we are doing sampling or training
+        :type num_adding_frame: int
+
+        :param init_states: initial states for hidden and cell state vector
+        :type init_states: Tuple[torch.tensor, torch.tensor]]
+
+        Note that due to pooling/unpooling, the actually frame additionally generated will be 4 * num_adding_frame
+        """
         x = F.elu(self.encoder1(x))
         x = F.elu(self.encoder1(x))
 
         mu, log_var = x[:, 0::2, :], x[:, 1::2, :]
         z = torch.randn(size=mu.shape)
         h = mu + torch.exp(0.5 * log_var) * z
-        m = self.rnn.sampling(h, output_frame)
+        m = self.rnn.sampling(h, num_adding_frame)
 
         x_hat = F.elu(self.decoder1(m))
         x_hat = F.elu(self.decoder2(x_hat))
         return x_hat
 
 
-    def train(self, lr: float, num_epochs: int, train_loader: dataloader, display="visual"):
+    def train(self, lr: float, num_epochs: int, train_loader: dataloader):
+        """train the data and output the loss
+        
+        :param lr: learning rate
+        :type lr: float
+
+        :param num_epochs: number of training epochs
+        :type num_epochs: int
+
+        :param train_loader: PyTorch data loader
+        :type train_loader: torch.utils.data.dataloader
+        """
         optimizer = torch.optim.Adam(self.parameters(), lr=lr)
 
         loss_lst = []
@@ -148,55 +212,3 @@ class VAE_LSTM(Module):
                 plt.plot(loss_lst)
                 plt.show()
         print(f"Final loss: {loss}")
-
-
-class MotionDataset(Dataset):
-    """Motion"""
-
-    def __init__(self, root_dir: str, fetch: Optional[Callable] = None, transform: Optional[Callable] = None):
-        """
-        Args:
-            root_dir (string): Directory with all the motion npz files.
-            fetch (callable, optional): Optional function to specify how data is fetched
-            transform (callable, optional): Optional transform to be applied on a sample.
-        """
-        self.root_dir = root_dir
-        self.transform = transform
-
-        # get all file name
-        if fetch:
-            self.file_name = fetch(root_dir)
-        else:
-            self.file_name = []
-            for r, d, f in os.walk(self.root_dir):
-                for file in f:
-                    self.file_name.append(r + "/" + file)
-
-        self.sanity_check()                
-
-    def __len__(self):
-        return len(self.file_name)
-
-    def __getitem__(self, idx):
-        if torch.is_tensor(idx):
-            idx = idx.tolist()
-
-            sample = []
-            for i in idx: 
-                if self.transform:
-                    sample.append(self.transform(np.load(self.file_name[i]), allow_pickle=True))
-            
-        else:
-            sample = np.load(self.file_name[idx], allow_pickle=True)
-            if self.transform:
-                sample = self.transform(sample)
-
-        return sample
-
-    def sanity_check(self):
-        for file_path in self.file_name:
-            data = np.load(file_path)
-            for field in ["trans", "root_orient", "poses"]:
-                if field not in data:
-                    self.file_name.remove(file_path)
-                    break
