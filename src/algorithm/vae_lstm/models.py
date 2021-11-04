@@ -8,7 +8,7 @@ import torch.nn.functional as F
 from torch.utils.data import dataloader
 from torch.nn.modules.conv import ConvTranspose1d
 from torch.nn import Module, Conv1d, Sequential, Dropout, MaxPool1d
-
+from params import *
 
 class MotionLSTM(Module):
     """A Motion LSTM model for recurrent generation of motion sequence
@@ -208,7 +208,6 @@ class VAE_LSTM(Module):
                 clear_output(wait=True)
                 plt.xlabel("# of Epoch")
                 plt.ylabel("Loss") 
-                plt.legend()
                 plt.plot(loss_lst)
                 plt.show()
         print(f"Final loss: {loss}")
