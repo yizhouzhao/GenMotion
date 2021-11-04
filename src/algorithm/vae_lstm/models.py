@@ -8,7 +8,7 @@ import torch.nn.functional as F
 from torch.utils.data import dataloader
 from torch.nn.modules.conv import ConvTranspose1d
 from torch.nn import Module, Conv1d, Sequential, Dropout, MaxPool1d
-from params import *
+from .params import *
 
 class MotionLSTM(Module):
     """A Motion LSTM model for recurrent generation of motion sequence
