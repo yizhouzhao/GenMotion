@@ -6,3 +6,4 @@ Algorithms
    :caption: Contents:
    
    On human motion prediction using rnn
+   vae-lstm
