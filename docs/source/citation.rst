@@ -38,3 +38,12 @@ booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Rec
 pages={2891--2900},
 year={2017}
 }
+
+@article{petrovich2021action,
+  title={Action-Conditioned 3D Human Motion Synthesis with Transformer VAE},
+  author={Petrovich, Mathis and Black, Michael J and Varol, G{\"u}l},
+  journal={arXiv preprint arXiv:2104.05670},
+  year={2021}
+}
+
+
