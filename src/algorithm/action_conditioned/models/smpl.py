@@ -6,9 +6,21 @@ import contextlib
 from smplx import SMPLLayer as _SMPLLayer
 from smplx.lbs import vertices2joints
 
-from src.datasets.ntu13 import action2motion_joints
+from ..datasets.ntu13 import action2motion_joints
 
-from src.config import SMPL_MODEL_PATH, JOINT_REGRESSOR_TRAIN_EXTRA
+#################################################################################### move config.py here
+#from src.config import SMPL_MODEL_PATH, JOINT_REGRESSOR_TRAIN_EXTRA
+
+import os
+
+SMPL_DATA_PATH = "models/smpl/"
+
+SMPL_KINTREE_PATH = os.path.join(SMPL_DATA_PATH, "kintree_table.pkl")
+SMPL_MODEL_PATH = os.path.join(SMPL_DATA_PATH, "SMPL_NEUTRAL.pkl")
+
+JOINT_REGRESSOR_TRAIN_EXTRA = os.path.join(SMPL_DATA_PATH, 'J_regressor_extra.npy')
+####################################################################################
+
 
 JOINTSTYPE_ROOT = {"a2m": 0, # action2motion
                    "smpl": 0,

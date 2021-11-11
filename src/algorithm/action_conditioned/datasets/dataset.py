@@ -6,7 +6,7 @@ import torch
 from .tools import parse_info_name
 from ..utils.tensors import collate
 from ..utils.misc import to_torch
-import src.utils.rotation_conversions as geometry
+from ..utils import rotation_conversions as geometry
 
 POSE_REPS = ["xyz", "rotvec", "rotmat", "rotquat", "rot6d"]
 

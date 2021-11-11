@@ -40,4 +40,4 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'src')))
 
-autodoc_mock_imports = ["bpy", "numpy", "torch", "matplotlib", "IPython"]
+autodoc_mock_imports = ["bpy", "numpy", "torch", "matplotlib", "IPython", "pickle"]
