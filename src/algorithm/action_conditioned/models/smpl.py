@@ -13,7 +13,7 @@ from ..datasets.ntu13 import action2motion_joints
 
 import os
 
-SMPL_DATA_PATH = "models/smpl/"
+SMPL_DATA_PATH = "../dataset/SMPL/models/smpl/"
 
 SMPL_KINTREE_PATH = os.path.join(SMPL_DATA_PATH, "kintree_table.pkl")
 SMPL_MODEL_PATH = os.path.join(SMPL_DATA_PATH, "SMPL_NEUTRAL.pkl")

@@ -155,10 +155,11 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks
 
-
-thirdParty/
-dataset/Mocap/
-
 # vscode 
 .vscode/
 docs/source/_build
+
+# folder
+thirdParty/
+dataset/Mocap/
+dataset/SMPL/
