@@ -1,7 +1,10 @@
 import torch
 
 class HumanAct12Params:
-    def __init__(self) -> None:
+    def __init__(self, mode="train") -> None:
+        self.exp_mode = mode
+
+        # if self.exp_mode == "train":
         self.expname= 'exps'
         self.folder= 'exps/humanact12'
         self.cuda= True
@@ -31,8 +34,27 @@ class HumanAct12Params:
         self.num_layers= 8
         self.activation= 'gelu'
         self.no_vertstrans= True
-        self.modeltype= 'cvae'
-        self.archiname= 'transformer'
         self.losses= ['rc', 'rcxyz', 'kl']
         self.lambdas= {'rc': 1.0, 'rcxyz': 1.0, 'kl': 1e-05}
         self.device= torch.device(type='cuda')
+
+        if self.exp_mode == "sample":
+            # sampling model
+            self.num_samples_per_action = 10
+            self.num_frames = 60
+            self.fact_latent = 1
+            self.jointstype = "smpl"
+            self.vertstrans = False
+            self.no_vertstrans = False
+            self.mode = "gen"
+            self.num_classes = 12
+            self.nfeats = 6
+            self.njoints = 25
+        
+        # cuda option
+        self.cuda = True
+        self.cpu = False
+
+        # model
+        self.modeltype= 'cvae'
+        self.archiname= 'transformer'

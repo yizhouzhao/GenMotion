@@ -163,3 +163,4 @@ docs/source/_build
 thirdParty/
 dataset/Mocap/
 dataset/SMPL/
+pretrained/
