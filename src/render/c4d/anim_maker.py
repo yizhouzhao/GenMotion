@@ -14,10 +14,10 @@ class C4DAnimMaker():
             "# set documentation",
             "doc = c4d.documents.GetActiveDocument()"
             ]
-        self.controller.SendCommand(preparation_command)
+        self.controller.SendCommand("\n".join(preparation_command))
 
     def RegisterJointPosition(self, joint):
-        register_command = [f"{joint} = doc.SearchObject({joint})",
+        register_command = [f"{joint} = doc.SearchObject(\"{joint}\")",
             f"{joint}.SetRotationOrder(5)",
             "# Creates the track in memory. Defined by it's DESCID    ",
             f"{joint}_trX = c4d.CTrack({joint}, c4d.DescID(c4d.DescLevel(c4d.ID_BASEOBJECT_POSITION, c4d.DTYPE_VECTOR, 0), c4d.DescLevel(c4d.VECTOR_X, c4d.DTYPE_REAL, 0)))",
