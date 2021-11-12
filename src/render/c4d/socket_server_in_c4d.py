@@ -1,6 +1,5 @@
 import c4d
 import socket
-import time
 
 def SimpleServer(HOST = '127.0.0.1', PORT = 3005):
     """

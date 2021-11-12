@@ -1,7 +1,7 @@
 preparation_command_0 = ["import c4d",
 "# set documentation",
 "doc = c4d.documents.GetActiveDocument()",
-"root_name = "f_avg_root"",
+"root_name = \"f_avg_root\"",
 "root = doc.SearchObject(root_name)",
 "# Creates the track in memory. Defined by it's DESCID    ",
 "root_trX = c4d.CTrack(root, c4d.DescID(c4d.DescLevel(c4d.ID_BASEOBJECT_POSITION, c4d.DTYPE_VECTOR, 0), c4d.DescLevel(c4d.VECTOR_X, c4d.DTYPE_REAL, 0)))",
