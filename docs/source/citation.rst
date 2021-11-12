@@ -45,5 +45,3 @@ year={2017}
   journal={arXiv preprint arXiv:2104.05670},
   year={2021}
 }
-
-
