@@ -1,7 +1,8 @@
 import time
+from tqdm.auto import tqdm
 
-from .utils import C4DController
-from .params import *
+from utils import C4DController
+from params import *
 
 class C4DAnimMaker():
     def __init__(self, PORT) -> None:
@@ -60,12 +61,19 @@ class C4DSMPLHAnimMaker(C4DAnimMaker):
     def __init__(self, PORT, joint_prefix = "f_avg_", root_name = "root") -> None:
         super().__init__(PORT)
         self.joint_prefix = joint_prefix
-        self.root = root_name
+        self.root = self.joint_prefix + root_name
 
     def RegisterJoints(self, register_joint = True):
         if register_joint:
             self.RegisterJointPosition(self.root)
             self.RegisterJointRotation(self.root)
+
+        for i in tqdm(range(1, len(SMPL_H_SKELETON))):
+            joint_name = "f_avg_" + SMPL_H_SKELETON[i]
+            self.RegisterJointRotation(joint_name)
+            time.sleep(0.05)
+
+        
 
         
 
