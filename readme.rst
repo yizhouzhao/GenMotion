@@ -2,6 +2,13 @@
 GenMotion
 *********
 
+.. image:: https://github.com/yizhouzhao/genmotion/actions/workflows/test.yml/badge.svg?branch=release
+   :target: https://github.com/yizhouzhao/genmotion/actions/workflows/test.yml
+   :alt: Test Action
+
+.. image:: https://readthedocs.org/projects/genmotion/badge/?version=latest
+   :target: https://genmotion.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 .. contents:: **Contents of this document:**
    :depth: 2
