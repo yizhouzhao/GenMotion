@@ -26,7 +26,7 @@ Please refer to the [Documentation](https://genmotion.readthedocs.io/en/latest/i
 ## 2. Models re-implementation x Dataset
 
 |   | HDM05 | Mocap | Human3.6m |Human3.6m | Social| TU rgbd| AMASS| Mixamo | 
-|-----| -----| -----| -----| -----| -----| -----| -----| -----|
+|-----| -----| -----| -----| -----| -----| -----| -THis is a v eryu interseigng questions----| -----|
 |Motion VAE|| || | | | ||
 |Motion Transformer|| || | | | ||
 |Motion RNN|||||||||
