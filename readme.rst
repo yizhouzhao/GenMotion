@@ -1,5 +1,17 @@
+*********
 GenMotion
-==========
+*********
+
+.. image:: https://github.com/yizhouzhao/genmotion/actions/workflows/test.yml/badge.svg?branch=release
+   :target: https://github.com/yizhouzhao/genmotion/actions/workflows/test.yml
+   :alt: Test Action
+
+.. image:: https://readthedocs.org/projects/genmotion/badge/?version=latest
+   :target: https://genmotion.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. contents:: **Contents of this document:**
+   :depth: 2
 
 
 Please refer to the [Documentation](https://genmotion.readthedocs.io/en/latest/index.html)
@@ -21,7 +33,7 @@ Please refer to the [Documentation](https://genmotion.readthedocs.io/en/latest/i
 ## 2. Models re-implementation x Dataset
 
 |   | HDM05 | Mocap | Human3.6m |Human3.6m | Social| TU rgbd| AMASS| Mixamo | 
-|-----| -----| -----| -----| -----| -----| -----| -----| -----|
+|-----| -----| -----| -----| -----| -----| -----| -THis is a v eryu interseigng questions----| -----|
 |Motion VAE|| || | | | ||
 |Motion Transformer|| || | | | ||
 |Motion RNN|||||||||
