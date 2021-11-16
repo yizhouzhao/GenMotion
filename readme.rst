@@ -17,20 +17,20 @@ GenMotion
 .. image:: https://img.shields.io/github/license/yizhouzhao/genmotion
    :target: https://choosealicense.com/licenses/mit/
    :alt: Licence
-
-
-.. contents:: **Contents of this document:**
-   :depth: 2
-
-
-
-
+   
 `GenMotion` (/gen’motion/) is a Python library for making skeletal animations. 
 GenMotion provide unified pipelines for loading data, diversified motion generation models, and real-time animation sampling. It also comes with a easy-to-use and industry-compatible API for `Autodesk Maya <https://www.autodesk.com/products/maya/overview?term=1-YEAR&tab=subscription>`_,
 `Maxon Cinema 4D <https://www.maxon.net/en/cinema-4d>`_, and `Blender <https://www.blender.org/>`_.
 
 You can find the full ducumentation and tutorials `here <https://genmotion.readthedocs.io/en/latest/>`_.
 
+.. contents:: **Contents of this document:**
+   :depth: 2
+
+Installation
+==============
+.. code-block::
+       ?pip install genmotion
 
 
 Progress
