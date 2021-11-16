@@ -27,6 +27,11 @@ You can find the full ducumentation and tutorials `here <https://genmotion.readt
 .. contents:: **Contents of this document:**
    :depth: 2
 
+Installation
+==============
+.. code-block::
+       ?pip install genmotion
+
 
 Progress
 ========
