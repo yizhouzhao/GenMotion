@@ -6,7 +6,7 @@ Large datasets are the essential for the success of recent advances in human mot
 HDM05
 ################################
 
-.. image:: https://img.shields.io/badge/license-creative_commons-red
+.. image:: https://img.shields.io/badge/license-creative_commons-orange
    :target: https://creativecommons.org/licenses/by-sa/3.0/
    :alt: Licence
 
@@ -25,7 +25,7 @@ Mocap CMU
 AMASS Collection
 ################################
 
-.. image:: https://img.shields.io/badge/license-non_commercial-green
+.. image:: https://img.shields.io/badge/license-non_commercial-red
    :target: https://amass.is.tue.mpg.de/license.html
    :alt: Licence
 
@@ -36,7 +36,7 @@ AMASS Collection
 HumanAct12
 ################################
 
-.. image:: https://img.shields.io/badge/license-non_commercial-green
+.. image:: https://img.shields.io/badge/license-non_commercial-red
    :target: https://jimmyzou.github.io/publication/2020-PHSPDataset
    :alt: Licence
 
