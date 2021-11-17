@@ -27,6 +27,7 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
    :caption: User Guide
 
    compatability
+   dataset
    genmotion_api 
    genmotion_tutorials
    citation
