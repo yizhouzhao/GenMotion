@@ -16,6 +16,5 @@ Recurrent Network Models for Human Dynamics
 ****************************************************************
 Encoder-Recurrent-Decoder (ERD) : [CIT2002]_. is a model for prediction of human body poses from motion capture. The ERD model is a recurrent neural network that incorporates nonlinear encoder and decoder networks before and after recurrent layers.
 
-
 .. [CIT2002] This is the citation.  It's just like a footnote,
    except the label is textual.
