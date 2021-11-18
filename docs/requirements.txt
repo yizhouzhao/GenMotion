@@ -2,3 +2,4 @@ ipykernel
 nbsphinx
 tqdm
 numpy
+sphinxcontrib-bibtex
