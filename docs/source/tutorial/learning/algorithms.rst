@@ -5,6 +5,7 @@ Algorithms
    :maxdepth: 2
    :caption: Contents:
    
+   encoder_recurrent_decoder
    On human motion prediction using rnn
    vae-lstm
    action2motion
