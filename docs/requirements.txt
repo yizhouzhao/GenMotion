@@ -2,4 +2,4 @@ ipykernel
 nbsphinx
 tqdm
 numpy
-sphinxcontrib-bibtex
+sphinxcontrib-bibtex<2.0.0 
