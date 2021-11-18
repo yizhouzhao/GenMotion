@@ -12,17 +12,14 @@ HDM05
 
 `HDM05 <http://resources.mpi-inf.mpg.de/HDM05/index.html>`_  contains more than three hours, more than 70 motion classes in 10 to 50 realizations executed by various actors of systematically recorded and well-documented motion capture data in the C3D as well as in the ASF/AMC data format.
 
-
-Human3.6M
-################################
-
-.. image:: https://img.shields.io/badge/license-academic_only-blue
-   :target: http://vision.imar.ro/human3.6m/eula.php
-   :alt: Licence
-
-`Human3.6M <http://vision.imar.ro/human3.6m/description.php>`_, of 3.6 Million accurate 3D Human poses, acquired by recording the performance
-of 5 female and 6 male subjects, under 4 different viewpoints, for training realistic human sensing systems and for evaluating the next
-generation of human pose estimation models and algorithms.
+..
+   Human3.6M
+   .. image:: https://img.shields.io/badge/license-academic_only-blue
+      :target: http://vision.imar.ro/human3.6m/eula.php
+      :alt: Licence
+   `Human3.6M <http://vision.imar.ro/human3.6m/description.php>`_, of 3.6 Million accurate 3D Human poses, acquired by recording the performance
+   of 5 female and 6 male subjects, under 4 different viewpoints, for training realistic human sensing systems and for evaluating the next
+   generation of human pose estimation models and algorithms.
 
 Mocap CMU
 ################################
