@@ -14,4 +14,4 @@ Recurrent Neural Network (RNN) as encoder to map input to a hidden vector, and t
 
 Recurrent Network Models for Human Dynamics 
 ****************************************************************
-Encoder-Recurrent-Decoder (ERD) :cite:p:`fragkiadaki2015recurrent`. is a model for prediction of human body poses from motion capture. The ERD model is a recurrent neural network that incorporates nonlinear encoder and decoder networks before and after recurrent layers.
+Encoder-Recurrent-Decoder (ERD) :cite:`fragkiadaki2015recurrent`. is a model for prediction of human body poses from motion capture. The ERD model is a recurrent neural network that incorporates nonlinear encoder and decoder networks before and after recurrent layers.
