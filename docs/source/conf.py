@@ -19,6 +19,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
     'sphinx.ext.autosectionlabel',
+    'sphinxcontrib.bibtex',
     'nbsphinx',
 ]
 
