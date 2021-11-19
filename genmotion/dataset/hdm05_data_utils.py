@@ -49,7 +49,7 @@ class HDM05Dataset(torch.utils.data.Dataset):
                         # TODO: change degree to radius
                         # if self.radius:  
 
-                        new_frame_info.extend(joint_pose)
+                        new_frame_info.extend([float(_) for _ in joint_pose])
                 
             self.animation_clips.append(animation_clip)
     
@@ -60,11 +60,10 @@ class HDM05Dataset(torch.utils.data.Dataset):
                 continue
 
             for i in range(len(clip) - self.training_data_length):
-                for j in range(i, i + self.training_data_length):
-                    self.data.append(clip[j: j + self.training_data_length])
+                self.data.append(clip[i: i + self.training_data_length])
     
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
-        return self.data[idx]
+        return torch.FloatTensor(self.data[idx])

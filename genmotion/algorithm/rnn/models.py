@@ -13,7 +13,7 @@ class Encoder(nn.Module):
         self.linear = nn.Sequential(
             nn.Linear(input_dim, encoder_hidden_dim),
             nn.ReLU(),
-            nn.Linear(input_dim, lstm_hidden_dim),
+            nn.Linear(encoder_hidden_dim, lstm_hidden_dim),
         )
         
     def forward(self, x):
@@ -45,7 +45,11 @@ class EncoderRecurrentDecoder(nn.Module):
 
     def forward(self, x):
         x = self.encoder(x)
-        x, _, _ = self.lstm(x)
+        
+        #h0 = torch.zeros(lstm_layer_num, x.shape(0), lstm_hidden_dim).to(x.device)
+        #c0 = torch.zeros(lstm_layer_num, x.shape(0), lstm_hidden_dim).to(x.device)
+        
+        x, _ = self.rnn(x)
         x = self.decoder(x)
 
         return x
