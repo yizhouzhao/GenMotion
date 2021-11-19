@@ -66,4 +66,6 @@ class HDM05Dataset(torch.utils.data.Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        return torch.FloatTensor(self.data[idx])
+        item = torch.FloatTensor(self.data[idx])
+
+        return item[:self.training_data_length - 1], item[1:]

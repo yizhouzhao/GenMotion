@@ -37,10 +37,10 @@ class Decoder(nn.Module):
 
 
 class EncoderRecurrentDecoder(nn.Module):
-    def __init__(self, input_dim, output_dim):
+    def __init__(self, opt):
         super().__init__()
-        self.encoder = Encoder(input_dim)
-        self.decoder = Decoder(output_dim)
+        self.encoder = Encoder(opt.get("input_dim"))
+        self.decoder = Decoder(opt.get("input_dim"))
         self.rnn = nn.LSTM(lstm_hidden_dim, lstm_hidden_dim, lstm_layer_num, batch_first = True)
 
     def forward(self, x):
