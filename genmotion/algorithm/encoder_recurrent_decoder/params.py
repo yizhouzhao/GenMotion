@@ -12,7 +12,9 @@ class HDM05Params:
         self.position_loss_weight = 0.1
         self.rotation_loss_weight = 1.0
         self.model_save_path = os.path.join(os.getcwd(),"pretrained_models")
+        self.frame_interval = 10
+        self.input_motion_length = 50
 
         if self.exp_mode == "sample":
-            pass
+            self.max_target_length = 20
     
