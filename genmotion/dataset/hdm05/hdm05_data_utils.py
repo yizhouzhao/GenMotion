@@ -6,12 +6,13 @@ import numpy as np
 from .hdm05_params import ASF_JOINT2DOF
 
 class HDM05Dataset(torch.utils.data.Dataset):
-    def __init__(self, data_path, frame_interval = 10, training_data_length= 50, radius = True) -> None:
+    def __init__(self, data_path, opt) -> None:
         super().__init__()
+        self.opt = opt
         self.data_path = data_path
-        self.frame_interval = frame_interval
-        self.training_data_length = training_data_length
-        self.radius = True
+        self.frame_interval = opt.get("frame_interval", 10)
+        self.input_motion_length = opt.get("input_motion_length",50)
+        self.radius = opt.get("radius", True)
 
         self.amc_files = []
         self.animation_clips = []
@@ -56,11 +57,11 @@ class HDM05Dataset(torch.utils.data.Dataset):
     def load_data(self):
         print("preparing training data")
         for clip in tqdm(self.animation_clips):
-            if len(clip) < self.training_data_length:
+            if len(clip) < self.input_motion_length:
                 continue
 
-            for i in range(len(clip) - self.training_data_length):
-                self.data.append(clip[i: i + self.training_data_length])
+            for i in range(len(clip) - self.input_motion_length):
+                self.data.append(clip[i: i + self.input_motion_length])
     
     def __len__(self):
         return len(self.data)
@@ -68,4 +69,4 @@ class HDM05Dataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         item = torch.FloatTensor(self.data[idx])
 
-        return item[:self.training_data_length - 1], item[1:]
+        return item[:self.input_motion_length - 1], item[1:]
