@@ -2,8 +2,8 @@ import bpy
 from tqdm import tqdm
 import numpy as np
 from typing import Any, List, Optional
-from dataset.hdm05_params import ASF_JOINT2DOF
-from dataset.amass_params import SMPL_X_SKELTON2
+from genmotion.dataset.hdm05_params import ASF_JOINT2DOF
+from genmotion.dataset.amass_params import SMPL_X_SKELTON2
 
 def import_fbx(file_path: str):
     """Import fbx model into blender
