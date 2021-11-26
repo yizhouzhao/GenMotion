@@ -4,9 +4,10 @@
 
 Welcome to GenMotion's documentation!
 ========================================
+**GenMotion** (/gen’motion/) is a Python library for making skeletal animations. 
+It enables easy dataset loading and experiment sharing for synthesizing skeleton-Based human animation with the Python API. It also comes with a easy-to-use and industry-compatible API for `Autodesk Maya <https://www.autodesk.com/products/maya/overview?term=1-YEAR&tab=subscription>`_,
+`Maxon Cinema 4D <https://www.maxon.net/en/cinema-4d>`_, and `Blender <https://www.blender.org/>`_.
 
-**GenMotion** (/gen'motion/) is a Python library for making skeletal animations.
-We present a novel energy-based framework to sample and synthesize animations by associating the characters' body motions, facial expressions, and social relations. It also comes with a easy-to-use API.
 
 The source code is available on `Github <https://https://github.com/yizhouzhao/GenMotion>`_
 
@@ -32,31 +33,22 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
    genmotion_tutorials
    citation
 
-Features of GenMotion
----------------------
-Here are some of the features of GenMotion:
 
-Motion Generation
-^^^^^^^^^^^^^^^^^
+Library overview
+----------------
 
-Dramatic progress has been made in animating individual characters. 
-However, we still lack automatic control over activities between characters, especially those involving interactions.
+Working with datasets
+^^^^^^^^^^^^^^^^^^^^^
+We integrate multiple skeleton-based human motion datasets in GenMotion.
+For datasets that have different parameterization of the body, we include 
+documents for meta-data descriptions and visualization tools to illustrate characteristics of each dataset.
 
-.. image:: ../images/motion.png
-   :alt: Motion image
-   :width: 100%
+Benchmarking the state-of-the-arts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To encourage related research in human motion generation and retrieve empirical results from most advanced methods,
+GenMotion re-produces the training procedure of character motion generation methods by reusing and cleaning the code from official implementation.
 
-Emotion Generation
-^^^^^^^^^^^^^^^^^^
-.. image:: ../images/emotion.png
-   :alt: Emotion image
-   :width: 100%
-
-Incorporating Social Relations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. image:: ../images/relation.png
-   :alt: Social relation image
-   :width: 100%
-
-Our  approach can be useful for the tasks including but not limitedto: i) assisting animators to make keyframe animations in-cluding character poses and facial expressions. ii) helpinggame developers generate vivid NPC interaction events; iii)offering better emotional intelligence for VR agents.
+Rendering
+^^^^^^^^^
+To achieve real-time animation sampling, we provide communication interface, i.e. client and server interaction,  
+with the 3D modeling software in GenMotion.
