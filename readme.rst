@@ -11,7 +11,7 @@ GenMotion
    :alt: Documentation Status
 
 .. image:: https://img.shields.io/pypi/v/genmotion
-   :target: https://genmotion.readthedocs.io/en/latest/?badge=latest
+   :target: https://pypi.org/project/genmotion/
    :alt: PyPI
    
 .. image:: https://img.shields.io/github/license/yizhouzhao/genmotion
@@ -31,13 +31,11 @@ You can find the full ducumentation and tutorials `here <https://genmotion.readt
 Installation
 ============
 
-(This is still under construction)
-
 You can install ``GenMotion`` directly from the pip library with:
 
 .. code:: shell
 
-    pip install genmotion
+    pip3 install genmotion
 
 
 
@@ -69,9 +67,9 @@ Rendering Tools x Datasets
 +---------------+---------------+---------------+---------------+
 |               | Maya          | C4D           | Blender       |
 +===============+===============+===============+===============+
-| HDM05         | [Done] 10/06  |               |               |
+| HDM05         | ✓             |               | ✓             |
 +---------------+---------------+---------------+---------------+
-| Mocap         | [Done] 10/07  |               |               |
+| Mocap         | ✓             |               |               |
 +---------------+---------------+---------------+---------------+
 | Human3.6m     |               |               |               |
 +---------------+---------------+---------------+---------------+
@@ -79,9 +77,9 @@ Rendering Tools x Datasets
 +---------------+---------------+---------------+---------------+
 | NTU rgbd      |               |               |               |
 +---------------+---------------+---------------+---------------+
-| AMASS         | [Done] 10/08  |               | [Done] 10/14  |
+| AMASS         | ✓             |               | ✓             |
 +---------------+---------------+---------------+---------------+
-| Mixamo        | [Done]        |               | [Done]        |
+| Mixamo        | ✓             |               | ✓             |
 +---------------+---------------+---------------+---------------+
 
 Model x Dataset
