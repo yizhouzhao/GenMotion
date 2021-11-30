@@ -1,4 +1,4 @@
-.. figure:: ../images/title.gif
+.. figure:: ../images/cover.png
    :alt: Title image
    :width: 100%
 
