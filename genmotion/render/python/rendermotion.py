@@ -1,14 +1,13 @@
 import numpy as np
 import imageio
 import os
+import torch
 import argparse
 from tqdm import tqdm
 from .renderer import get_renderer
-
+from .utils import rotation_conversion as geometry
 
 def get_rotation(theta=np.pi/3):
-    import src.utils.rotation_conversions as geometry
-    import torch
     axis = torch.tensor([0, 1, 0], dtype=torch.float)
     axisangle = theta*axis
     matrix = geometry.axis_angle_to_matrix(axisangle)
