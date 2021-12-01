@@ -3,3 +3,4 @@ nbsphinx
 tqdm
 numpy
 sphinxcontrib-bibtex<2.0.0 
+imageio
