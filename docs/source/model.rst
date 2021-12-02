@@ -13,7 +13,7 @@ Seq2Seq models are popular and widely used in motion prediction/ Seq2Seq-based a
 Recurrent Neural Network (RNN) as encoder to map input to a hidden vector, and training another RNN as decoder to generate motion from the hidden vector. Both the encdoer and decoder are trained jointly. [cite]
 
 Recurrent Network Models for Human Dynamics 
-****************************************************************
+################################################################
 Encoder-Recurrent-Decoder (ERD) :cite:`fragkiadaki2015recurrent`. is a model for prediction of human body poses from motion capture. The ERD model is a recurrent neural network that incorporates nonlinear encoder and decoder networks before and after recurrent layers.
 
 .. bibliography:: refs.bib
