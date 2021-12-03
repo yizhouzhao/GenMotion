@@ -4,59 +4,60 @@ import torch.utils
 import torch.utils.data
 
 class VRNN(nn.Module):
-    def __init__(self, x_dim, h_dim, z_dim, n_layers, device, bias=False, resample_output = False):
+    def __init__(self, opt):
+        # x_dim, h_dim, z_dim, n_layers, device, bias=False, resample_output = False
         super(VRNN, self).__init__()
-        self.x_dim = x_dim
-        self.h_dim = h_dim
-        self.z_dim = z_dim
-        self.n_layers = n_layers
-        self.device = device
-        self.resample_output = resample_output
+        self.x_dim = opt["input_dim"]
+        self.h_dim = opt["hidden_dim"]
+        self.z_dim = opt["z_dim"]
+        self.n_layers = opt["n_layers"]
+        self.resample_output = False
+        self.bias = False
 
         # feature-extracting transformations
         self.phi_x = nn.Sequential(
-            nn.Linear(x_dim, h_dim),
+            nn.Linear(self.x_dim, self.h_dim),
             nn.ReLU(),
-            nn.Linear(h_dim, h_dim),
+            nn.Linear(self.h_dim, self.h_dim),
             nn.ReLU())
         self.phi_z = nn.Sequential(
-            nn.Linear(z_dim, h_dim),
+            nn.Linear(self.z_dim, self.h_dim),
             nn.ReLU())
 
         # encoder
         self.enc = nn.Sequential(
-            nn.Linear(h_dim + h_dim, h_dim),
+            nn.Linear(self.h_dim + self.h_dim, self.h_dim),
             nn.ReLU(),
-            nn.Linear(h_dim, h_dim),
+            nn.Linear(self.h_dim, self.h_dim),
             nn.ReLU())
-        self.enc_mean = nn.Linear(h_dim, z_dim)
+        self.enc_mean = nn.Linear(self.h_dim, self.z_dim)
         self.enc_std = nn.Sequential(
-            nn.Linear(h_dim, z_dim),
+            nn.Linear(self.h_dim, self.z_dim),
             nn.Softplus())
 
         # prior
         self.prior = nn.Sequential(
-            nn.Linear(h_dim, h_dim),
+            nn.Linear(self.h_dim, self.h_dim),
             nn.ReLU())
-        self.prior_mean = nn.Linear(h_dim, z_dim)
+        self.prior_mean = nn.Linear(self.h_dim, self.z_dim)
         self.prior_std = nn.Sequential(
-            nn.Linear(h_dim, z_dim),
+            nn.Linear(self.h_dim, self.z_dim),
             nn.Softplus())
 
         # decoder
         self.dec = nn.Sequential(
-            nn.Linear(h_dim + h_dim, h_dim),
+            nn.Linear(self.h_dim + self.h_dim, self.h_dim),
             nn.ReLU(),
-            nn.Linear(h_dim, h_dim),
+            nn.Linear(self.h_dim, self.h_dim),
             nn.ReLU())
         self.dec_std = nn.Sequential(
-            nn.Linear(h_dim, x_dim),
+            nn.Linear(self.h_dim, self.x_dim),
             nn.Softplus())
         self.dec_mean = nn.Sequential(
-            nn.Linear(h_dim, x_dim))
+            nn.Linear(self.h_dim, self.x_dim))
 
         # recurrence
-        self.rnn = nn.GRU(h_dim + h_dim, h_dim, n_layers, bias)
+        self.rnn = nn.GRU(self.h_dim + self.h_dim, self.h_dim, self.n_layers, self.bias)
 
     def forward(self, x, x_padding):
         all_enc_mean, all_enc_std = [], []

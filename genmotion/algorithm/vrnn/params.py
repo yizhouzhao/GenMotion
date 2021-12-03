@@ -1,7 +1,9 @@
 import torch
 import os
 
-class HDM05Params:
+from ..common.params import HyperParams
+
+class HDM05Params(HyperParams):
     def __init__(self, mode="train") -> None:
         self.exp_mode = mode
 
@@ -14,6 +16,11 @@ class HDM05Params:
         self.model_save_path = os.path.join(os.getcwd(),"pretrained_models")
         self.frame_interval = 10
         self.input_motion_length = 50
+
+        self.hidden_dim = 128
+        self.n_layers = 1 # GRU layers
+        self.z_dim = 32
+        
 
         if self.exp_mode == "sample":
             self.max_target_length = 20
