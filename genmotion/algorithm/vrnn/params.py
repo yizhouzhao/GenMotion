@@ -6,6 +6,7 @@ from ..common.params import HyperParams
 class HDM05Params(HyperParams):
     def __init__(self, mode="train") -> None:
         self.exp_mode = mode
+        self.model_name = "vrnn"
 
         # if self.exp_mode == "train":
         self.learning_rate = 1e-4

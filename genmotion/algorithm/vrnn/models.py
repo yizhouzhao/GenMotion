@@ -66,7 +66,7 @@ class VRNN(nn.Module):
         mse_loss = 0
 
         h = nn.Parameter(torch.zeros(self.n_layers, x.size(1), self.h_dim), requires_grad=True)
-        h = h.to(self.device)
+        h = h.to(x.device)
         for t in range(x.size(0)):
             phi_x_t = self.phi_x(x[t])
             padding = x_padding[t]
@@ -125,7 +125,7 @@ class VRNN(nn.Module):
         :return:x': [seq, 1, dim]
         '''
         h = nn.Parameter(torch.zeros(self.n_layers, x.size(1), self.h_dim), requires_grad=True)
-        h = h.to(self.device)
+        h = h.to(x.device)
 
         x_rec = torch.zeros_like(x)
         for t in range(x.size(0)):
@@ -152,12 +152,12 @@ class VRNN(nn.Module):
 
         return x_rec
 
-    def sample(self, seq_len):
+    def sample(self, seq_len, device):
         sample = torch.zeros(seq_len, self.x_dim)
-        sample = sample.to(self.device)
+        sample = sample.to(device)
 
         h = nn.Parameter(torch.randn(self.n_layers, 1, self.h_dim), requires_grad=True)
-        h = h.to(self.device)
+        h = h.to(device)
         for t in range(seq_len):
             # prior
             prior_t = self.prior(h[-1])
@@ -225,7 +225,7 @@ class VRNN(nn.Module):
     def _reparameterized_sample(self, mean, std):
         """using std to sample"""
         eps = torch.FloatTensor(std.size()).normal_()
-        eps = nn.Parameter(eps, requires_grad=False).to(self.device)
+        eps = nn.Parameter(eps, requires_grad=False).to(mean.device)
         return eps * std + mean
 
     def _kld_gauss(self, mean_1, std_1, mean_2, std_2, padding):
@@ -234,9 +234,9 @@ class VRNN(nn.Module):
         kld_element = (2 * torch.log(std_2) - 2 * torch.log(std_1) +
                        (std_1.pow(2) + (mean_1 - mean_2).pow(2)) /
                        std_2.pow(2) - 1)
-        return torch.mean(0.5 * torch.sum(kld_element, dim=1) * padding)
+        return torch.mean(0.5 * torch.sum(kld_element, dim=1))
 
     def _mse_loss(self, pred_x, ori_x, padding):
         """calculate mean square error for reconstruction"""
         #print("VRNN", pred_x.shape)
-        return torch.mean(torch.sum((pred_x - ori_x)**2, dim=1) * padding)
+        return torch.mean(torch.sum((pred_x - ori_x)**2, dim=1))

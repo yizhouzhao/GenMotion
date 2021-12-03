@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 from tqdm.auto import tqdm
 
@@ -32,21 +33,19 @@ class HDM05Trainer(Trainer):
             self.model.train()
             training_loss_record = []
             batch_progress_bar = tqdm(self.train_loader)
-            for batch in batch_progress_bar:
+            for batch_data in batch_progress_bar:
                 total_step += 1
-                input_motion, target_motion = batch
+                pad_data = torch.ones_like(batch_data)
 
-                input_motion = input_motion.to(self.device)
-                target_motion = target_motion.to(self.device)
+                batch_data = batch_data.to(self.device)
+                pad_data = pad_data.to(self.device)
                 
                 # forward
-                predict_motion = self.model(input_motion)
+                kld_loss, mse_loss, _, _ = self.model(batch_data, pad_data)
+                kld_loss = kld_loss / len(pad_data)
+                mse_loss = mse_loss / len(pad_data)
 
-                # loss
-                position_loss =  self.align_position_criterion(predict_motion[:,:,:3], target_motion[:,:,:3])
-                rotation_loss =  self.align_rotation_criterion(predict_motion[:,:,3:], target_motion[:,:,3:])
-
-                total_loss = self.position_loss_weight * position_loss + self.rotation_loss_weight * rotation_loss 
+                total_loss = kld_loss + mse_loss
 
                 # backpropagation
                 self.optimizer.zero_grad()
@@ -61,8 +60,8 @@ class HDM05Trainer(Trainer):
                     # print("total_loss", mean_loss)
                     batch_progress_bar.set_postfix({
                         "total loss:": "{:.3f}".format(mean_loss),
-                        "pos loss:": "{:.3f}".format(position_loss.item()),
-                        "rot loss:": "{:.3f}".format(rotation_loss.item()),
+                        "kld loss:": "{:.3f}".format(kld_loss.item()),
+                        "mse loss:": "{:.3f}".format(mse_loss.item()),
                         })
                     training_loss_record.clear()
 
@@ -77,8 +76,8 @@ class HDM05Trainer(Trainer):
         self.model.eval()
         eval_loss_record = {
             "total loss": [],
-            "position loss": [],
-            "rotation loss": [],
+            "kld loss": [],
+            "mse loss": [],
             }
         batch_progress_bar = tqdm(self.test_loader)
         for batch in batch_progress_bar:

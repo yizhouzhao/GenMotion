@@ -69,4 +69,7 @@ class HDM05Dataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         item = torch.FloatTensor(self.data[idx])
 
+        if self.opt["model_name"] == "vrnn":
+            return item
+
         return item[:self.input_motion_length - 1], item[1:]
