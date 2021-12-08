@@ -14,7 +14,7 @@ class HDM05Params(HyperParams):
         self.output_dim = 62
         self.position_loss_weight = 0.1
         self.rotation_loss_weight = 1.0
-        self.model_save_path = os.path.join(os.getcwd(),"pretrained_models")
+        self.model_save_path = os.path.join(os.getcwd(),"pretrained_models", "vrnn4hdm05")
         self.frame_interval = 10
         self.input_motion_length = 50
 

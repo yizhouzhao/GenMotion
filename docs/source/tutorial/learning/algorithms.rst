@@ -11,3 +11,5 @@ Algorithms
    action2motion
    Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
    vrnn
+   transformer
+   transformer_vae

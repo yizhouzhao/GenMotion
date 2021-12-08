@@ -35,6 +35,7 @@ class HDM05Trainer(Trainer):
             batch_progress_bar = tqdm(self.train_loader)
             for batch_data in batch_progress_bar:
                 total_step += 1
+                batch_data = batch_data.transpose(0, 1) # [B T N] -> [T B N]
                 pad_data = torch.ones_like(batch_data)
 
                 batch_data = batch_data.to(self.device)
@@ -80,28 +81,27 @@ class HDM05Trainer(Trainer):
             "mse loss": [],
             }
         batch_progress_bar = tqdm(self.test_loader)
-        for batch in batch_progress_bar:
-            input_motion, target_motion = batch
+        for batch_data in batch_progress_bar:
+            pad_data = torch.ones_like(batch_data)
 
-            input_motion = input_motion.to(self.device)
-            target_motion = target_motion.to(self.device)
+            batch_data = batch_data.to(self.device)
+            pad_data = pad_data.to(self.device)
             
             # forward
-            predict_motion = self.model(input_motion)
+            kld_loss, mse_loss, _, _ = self.model(batch_data, pad_data)
+            kld_loss = kld_loss / len(pad_data)
+            mse_loss = mse_loss / len(pad_data)
 
-            # loss
-            position_loss =  self.align_position_criterion(predict_motion[:,:,:3], target_motion[:,:,:3])
-            rotation_loss =  self.align_rotation_criterion(predict_motion[:,:,3:], target_motion[:,:,3:])
-            total_loss = self.position_loss_weight * position_loss + self.rotation_loss_weight * rotation_loss
+            total_loss = kld_loss + mse_loss
 
             # record 
             eval_loss_record['total loss'].append(total_loss.item())
-            eval_loss_record['position loss'].append(position_loss.item())
-            eval_loss_record['rotation loss'].append(rotation_loss.item())
+            eval_loss_record['kld loss'].append(kld_loss.item())
+            eval_loss_record['mse loss'].append(mse_loss.item())
 
         print("total loss {:.3f}".format(np.mean(eval_loss_record['total loss'])))
-        print("position loss {:.3f}".format(np.mean(eval_loss_record['position loss'])))
-        print("rotation loss {:.3f}".format(np.mean(eval_loss_record['rotation loss'])))
+        print("position loss {:.3f}".format(np.mean(eval_loss_record['kld loss'])))
+        print("rotation loss {:.3f}".format(np.mean(eval_loss_record['mse loss'])))
         
         if save_best:
             best_loss = np.mean(eval_loss_record['total loss'])

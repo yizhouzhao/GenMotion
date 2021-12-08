@@ -184,7 +184,7 @@ class VRNN(nn.Module):
 
     def sample_next(self, x):
         h = nn.Parameter(torch.zeros(self.n_layers, 1, self.h_dim), requires_grad=True)
-        h = h.to(self.device)
+        h = h.to(x.device)
 
         seq_len = x.size(0)
         for t in range(seq_len):

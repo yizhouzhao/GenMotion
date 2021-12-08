@@ -2,14 +2,7 @@ import torch
 
 from .models import EncoderRecurrentDecoder
 
-class Sampler():
-    def __init__(self, model_path, opt, device) -> None:
-        self.model_path = model_path
-        self.opt = opt
-        self.device = device
-
-    def sample(self, input_motion):
-        pass
+from ..common.sampler import Sampler
 
 class HDM05Sampler(Sampler):
     def __init__(self, model_path, opt, device) -> None:
