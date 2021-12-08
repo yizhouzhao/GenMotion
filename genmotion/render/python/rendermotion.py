@@ -2,7 +2,6 @@ import numpy as np
 import imageio
 import os
 import torch
-import argparse
 from tqdm import tqdm
 from .renderer import get_renderer
 from .utils import rotation_conversion as geometry
