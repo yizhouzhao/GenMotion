@@ -39,15 +39,11 @@ def render_video(meshes, key, action, renderer, savepath, background, cam=(0.75,
     writer.close()
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("filename")
-    opt = parser.parse_args()
-    filename = opt.filename
-    savefolder = os.path.splitext(filename)[0]
+def render(file_path: str):
+    savefolder = os.path.splitext(file_path)[0]
     os.makedirs(savefolder, exist_ok=True)
 
-    output = np.load(filename)
+    output = np.load(file_path)
 
     if output.shape[0] == 3:
         visualization, generation, reconstruction = output
@@ -85,7 +81,3 @@ def main():
             meshes = vidmeshes[action].transpose(2, 0, 1)
             path = os.path.join(savefolder, "action{}_{}.mp4".format(action, key))
             render_video(meshes, key, action, renderer, path, background)
-
-
-if __name__ == "__main__":
-    main()
