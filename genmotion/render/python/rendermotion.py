@@ -3,8 +3,8 @@ import imageio
 import os
 import torch
 from tqdm import tqdm
-from .renderer import get_renderer
-from .utils import rotation_conversion as geometry
+from genmotion.render.python.renderer import get_renderer
+import genmotion.render.python.utils as geometry
 
 def get_rotation(theta=np.pi/3):
     axis = torch.tensor([0, 1, 0], dtype=torch.float)
@@ -38,21 +38,17 @@ def render_video(meshes, key, action, renderer, savepath, background, cam=(0.75,
     writer.close()
 
 
-def render(file_path: str):
-    savefolder = os.path.splitext(file_path)[0]
-    os.makedirs(savefolder, exist_ok=True)
+def render(data: np.array, save_folder: str):
 
-    output = np.load(file_path)
-
-    if output.shape[0] == 3:
-        visualization, generation, reconstruction = output
-        output = {"visualization": visualization,
+    if data.shape[0] == 3:
+        visualization, generation, reconstruction = data
+        data = {"visualization": visualization,
                   "generation": generation,
                   "reconstruction": reconstruction}
     else:
         # output = {f"generation_{key}": output[key] for key in range(2)} #  len(output))}
         # output = {f"generation_{key}": output[key] for key in range(len(output))}
-        output = {f"generation_{key}": output[key] for key in range(len(output))}
+        data = {f"generation_{key}": data[key] for key in range(len(data))}
 
     width = 1024
     height = 1024
@@ -61,22 +57,22 @@ def render(file_path: str):
     renderer = get_renderer(width, height)
 
     # if duration mode, put back durations
-    if output["generation_3"].shape[-1] == 100:
-        output["generation_0"] = output["generation_0"][:, :, :, :40]
-        output["generation_1"] = output["generation_1"][:, :, :, :60]
-        output["generation_2"] = output["generation_2"][:, :, :, :80]
-        output["generation_3"] = output["generation_3"][:, :, :, :100]
-    elif output["generation_3"].shape[-1] == 160:
+    if data["generation_3"].shape[-1] == 100:
+        data["generation_0"] = data["generation_0"][:, :, :, :40]
+        data["generation_1"] = data["generation_1"][:, :, :, :60]
+        data["generation_2"] = data["generation_2"][:, :, :, :80]
+        data["generation_3"] = data["generation_3"][:, :, :, :100]
+    elif data["generation_3"].shape[-1] == 160:
         print("160 mode")
-        output["generation_0"] = output["generation_0"][:, :, :, :100]
-        output["generation_1"] = output["generation_1"][:, :, :, :120]
-        output["generation_2"] = output["generation_2"][:, :, :, :140]
-        output["generation_3"] = output["generation_3"][:, :, :, :160]
+        data["generation_0"] = data["generation_0"][:, :, :, :100]
+        data["generation_1"] = data["generation_1"][:, :, :, :120]
+        data["generation_2"] = data["generation_2"][:, :, :, :140]
+        data["generation_3"] = data["generation_3"][:, :, :, :160]
 
     # if str(action) == str(1) and str(key) == "generation_4":
-    for key in output:
-        vidmeshes = output[key]
+    for key in data:
+        vidmeshes = data[key]
         for action in range(len(vidmeshes)):
             meshes = vidmeshes[action].transpose(2, 0, 1)
-            path = os.path.join(savefolder, "action{}_{}.mp4".format(action, key))
+            path = os.path.join(save_folder, "action{}_{}.mp4".format(action, key))
             render_video(meshes, key, action, renderer, path, background)
