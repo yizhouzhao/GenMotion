@@ -1,6 +1,16 @@
 Installation
 =============
 
+Requirements
+--------------
+
+We developed this package under the same configuration as `Pytorch <https://pytorch.org/get-started/locally/>`_
+
+
+.. note::
+   To 
+
+
 Configuration
 -------------
 
@@ -14,27 +24,19 @@ or directly download from original source `github <https://https://github.com/yi
 
 Then install from source code
 
-.. code-block:: console_1
+.. code-block:: console
 
    (.venv) $ cd GenMotion
    (.venv) $ pip install .
 
 or you can install GenMotion directly from the pip library with:
 
-.. code-block:: console_2
+.. code-block:: console
 
    (.venv) $ pip3 install genmotion
 
-Requirements
---------------
-
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
 
 
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 func:`lumache.get_random_ingredients`
-will raise an exception.
 
 
                                                                                                                                                                                                                                                                                                                                 
