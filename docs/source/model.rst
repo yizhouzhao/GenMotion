@@ -25,5 +25,10 @@ VAEs can also be applied into generation human motion by combining samples from 
 Transformer
 ################################################################
 
+Transformer designed for the motion synthesis task works as a sequence-to-sequence prediction problem conditioned on input keyframes. The transformer-based pipeline contains spatial attention and temporal attention to extract spatial-temporal correlations of bones in the human skeleton :cite:`liu2021motion`.
+
+Transformer VAE
+################################################################
+
 
 .. bibliography:: refs.bib
