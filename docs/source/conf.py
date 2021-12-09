@@ -34,7 +34,7 @@ templates_path = ['_templates']
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
-html_logo = "../images/cover.png"
+html_logo = "../images/logo.png"
 html_theme_options = {
     'logo_only': True
 }
