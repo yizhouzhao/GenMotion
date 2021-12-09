@@ -89,7 +89,7 @@ def _sqrt_positive_part(x: torch.Tensor) -> torch.Tensor:
     but with a zero subgradient where x is 0.
 
     :param x: input tensor
-    "type x: torch.Tensor
+    :type x: torch.Tensor
 
     """
     ret = torch.zeros_like(x)
@@ -265,21 +265,22 @@ def matrix_to_euler_angles(matrix: torch.Tensor, convention: str) -> torch.Tenso
 
 def random_quaternions(
     n: int, dtype: Optional[torch.dtype] = None, device=None, requires_grad=False
-):
+) -> torch.Tensor:
     """
     Generate random quaternions representing rotations,
     i.e. versors with nonnegative real part.
 
-    Args:
-        n: Number of quaternions in a batch to return.
-        dtype: Type to return.
-        device: Desired device of returned tensor. Default:
-            uses the current device for the default tensor type.
-        requires_grad: Whether the resulting tensor should have the gradient
-            flag set.
+    :param n: Number of quaternions in a batch to return.
+    :type n: int
+    :param dtype: Type to return.
+    :type dtype: Optional[torch.dtype]
+    :param device: Desired device of returned tensor. Default: uses the current device for the default tensor type.
+    :type device: str
+    :param requires_grad: Whether the resulting tensor should have the gradient flag set.
+    :type requires_grad: bool
 
-    Returns:
-        Quaternions as tensor of shape (N, 4).
+    :returns: Quaternions as tensor of shape (N, 4).
+    :rtype: torch.Tensor
     """
     o = torch.randn((n, 4), dtype=dtype, device=device, requires_grad=requires_grad)
     s = (o * o).sum(1)
@@ -289,20 +290,21 @@ def random_quaternions(
 
 def random_rotations(
     n: int, dtype: Optional[torch.dtype] = None, device=None, requires_grad=False
-):
+) -> torch.Tensor:
     """
     Generate random rotations as 3x3 rotation matrices.
 
-    Args:
-        n: Number of rotation matrices in a batch to return.
-        dtype: Type to return.
-        device: Device of returned tensor. Default: if None,
-            uses the current device for the default tensor type.
-        requires_grad: Whether the resulting tensor should have the gradient
-            flag set.
+    :param n: Number of rotation matrices in a batch to return.
+    :type n: int
+    :param dtype: Type to return.
+    :type dtype: Optional[torch.dtype]
+    :param device: Device of returned tensor. Default: if None, uses the current device for the default tensor type.
+    :type device: str
+    :param requires_grad: Whether the resulting tensor should have the gradient flag set.
+    :type requires_grad: bool
 
-    Returns:
-        Rotation matrices as tensor of shape (n, 3, 3).
+    :returns: Rotation matrices as tensor of shape (n, 3, 3).
+    :rtype: torch.Tensor
     """
     quaternions = random_quaternions(
         n, dtype=dtype, device=device, requires_grad=requires_grad
@@ -312,49 +314,50 @@ def random_rotations(
 
 def random_rotation(
     dtype: Optional[torch.dtype] = None, device=None, requires_grad=False
-):
+) -> torch.Tensor:
     """
     Generate a single random 3x3 rotation matrix.
 
-    Args:
-        dtype: Type to return
-        device: Device of returned tensor. Default: if None,
+    :param dtype: Type to return
+    :type dtype: Optional[torch.dtype]
+    :param device: Device of returned tensor. Default: if None,
             uses the current device for the default tensor type
-        requires_grad: Whether the resulting tensor should have the gradient
-            flag set
+    :type device: str
+    :param requires_grad: Whether the resulting tensor should have the gradient flag set
+    :type requires_grad: bool
 
-    Returns:
-        Rotation matrix as tensor of shape (3, 3).
+    :returns: Rotation matrix as tensor of shape (3, 3).
+    :rtype: torch.Tensor
     """
     return random_rotations(1, dtype, device, requires_grad)[0]
 
 
-def standardize_quaternion(quaternions):
+def standardize_quaternion(quaternions: torch.Tensor) -> torch.Tensor:
     """
     Convert a unit quaternion to a standard form: one in which the real
     part is non negative.
 
-    Args:
-        quaternions: Quaternions with real part first,
-            as tensor of shape (..., 4).
+    :param quaternions: Quaternions with real part first, as tensor of shape (..., 4).
+    :type quaternions: torch.Tensor
 
-    Returns:
-        Standardized quaternions as tensor of shape (..., 4).
+    :returns: Standardized quaternions as tensor of shape (..., 4).
+    :rtype: torch.Tensor
     """
     return torch.where(quaternions[..., 0:1] < 0, -quaternions, quaternions)
 
 
-def quaternion_raw_multiply(a, b):
+def quaternion_raw_multiply(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
     """
     Multiply two quaternions.
     Usual torch rules for broadcasting apply.
 
-    Args:
-        a: Quaternions as tensor of shape (..., 4), real part first.
-        b: Quaternions as tensor of shape (..., 4), real part first.
+    :param a: Quaternions as tensor of shape (..., 4), real part first.
+    :type a: torch.Tensor
+    :param b: Quaternions as tensor of shape (..., 4), real part first.
+    :type b: torch.Tensor
 
-    Returns:
-        The product of a and b, a tensor of quaternions shape (..., 4).
+    :returns: The product of a and b, a tensor of quaternions shape (..., 4).
+    :rtype: torch.Tensor
     """
     aw, ax, ay, az = torch.unbind(a, -1)
     bw, bx, by, bz = torch.unbind(b, -1)
@@ -365,50 +368,52 @@ def quaternion_raw_multiply(a, b):
     return torch.stack((ow, ox, oy, oz), -1)
 
 
-def quaternion_multiply(a, b):
+def quaternion_multiply(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
     """
     Multiply two quaternions representing rotations, returning the quaternion
     representing their composition, i.e. the versor with nonnegative real part.
     Usual torch rules for broadcasting apply.
 
-    Args:
-        a: Quaternions as tensor of shape (..., 4), real part first.
-        b: Quaternions as tensor of shape (..., 4), real part first.
+    :param a: Quaternions as tensor of shape (..., 4), real part first.
+    :type a: torch.Tensor
+    :param b: Quaternions as tensor of shape (..., 4), real part first.
+    :type b: torch.Tensor
 
-    Returns:
-        The product of a and b, a tensor of quaternions of shape (..., 4).
+    :returns: The product of a and b, a tensor of quaternions shape (..., 4).
+    :rtype: torch.Tensor
     """
     ab = quaternion_raw_multiply(a, b)
     return standardize_quaternion(ab)
 
 
-def quaternion_invert(quaternion):
+def quaternion_invert(quaternion: torch.Tensor) -> torch.Tensor:
     """
     Given a quaternion representing rotation, get the quaternion representing
     its inverse.
 
-    Args:
-        quaternion: Quaternions as tensor of shape (..., 4), with real part
+    :param: quaternion: Quaternions as tensor of shape (..., 4), with real part
             first, which must be versors (unit quaternions).
+    :type quaternion: torch.Tensor
 
-    Returns:
-        The inverse, a tensor of quaternions of shape (..., 4).
+    :returns: The inverse, a tensor of quaternions of shape (..., 4).
+    :rtype: torch.Tensor
     """
 
     return quaternion * quaternion.new_tensor([1, -1, -1, -1])
 
 
-def quaternion_apply(quaternion, point):
+def quaternion_apply(quaternion: torch.Tensor, point: torch.Tensor) -> torch.Tensor:
     """
     Apply the rotation given by a quaternion to a 3D point.
     Usual torch rules for broadcasting apply.
 
-    Args:
-        quaternion: Tensor of quaternions, real part first, of shape (..., 4).
-        point: Tensor of 3D points of shape (..., 3).
+    :param quaternion: Tensor of quaternions, real part first, of shape (..., 4).
+    :type quaternion: torch.Tensor
+    :param point: Tensor of 3D points of shape (..., 3).
+    :type point: torch.Tensor
 
-    Returns:
-        Tensor of rotated points of shape (..., 3).
+    :returns: Tensor of rotated points of shape (..., 3).
+    :rtype: torch.Tensor
     """
     if point.size(-1) != 3:
         raise ValueError(f"Points are not in 3D, f{point.shape}.")
@@ -421,50 +426,50 @@ def quaternion_apply(quaternion, point):
     return out[..., 1:]
 
 
-def axis_angle_to_matrix(axis_angle):
+def axis_angle_to_matrix(axis_angle: torch.Tensor) -> torch.Tensor:
     """
     Convert rotations given as axis/angle to rotation matrices.
 
-    Args:
-        axis_angle: Rotations given as a vector in axis angle form,
+    :param axis_angle: Rotations given as a vector in axis angle form,
             as a tensor of shape (..., 3), where the magnitude is
             the angle turned anticlockwise in radians around the
             vector's direction.
+    :type axis_angle: torch.Tensor
 
-    Returns:
-        Rotation matrices as tensor of shape (..., 3, 3).
+    :returns: Rotation matrices as tensor of shape (..., 3, 3).
+    :rtype: torch.Tensor
     """
     return quaternion_to_matrix(axis_angle_to_quaternion(axis_angle))
 
 
-def matrix_to_axis_angle(matrix):
+def matrix_to_axis_angle(matrix: torch.Tensor) -> torch.Tensor:
     """
     Convert rotations given as rotation matrices to axis/angle.
 
-    Args:
-        matrix: Rotation matrices as tensor of shape (..., 3, 3).
+    :param matrix: Rotation matrices as tensor of shape (..., 3, 3).
+    :type matrix: torch.Tensor
 
-    Returns:
-        Rotations given as a vector in axis angle form, as a tensor
+    :returns: Rotations given as a vector in axis angle form, as a tensor
             of shape (..., 3), where the magnitude is the angle
             turned anticlockwise in radians around the vector's
             direction.
+    :rtype: torch.Tensor
     """
     return quaternion_to_axis_angle(matrix_to_quaternion(matrix))
 
 
-def axis_angle_to_quaternion(axis_angle):
+def axis_angle_to_quaternion(axis_angle: torch.Tensor) -> torch.Tensor:
     """
     Convert rotations given as axis/angle to quaternions.
 
-    Args:
-        axis_angle: Rotations given as a vector in axis angle form,
+    :param axis_angle: Rotations given as a vector in axis angle form,
             as a tensor of shape (..., 3), where the magnitude is
             the angle turned anticlockwise in radians around the
             vector's direction.
+    :type axis_angle: torch.Tensor
 
-    Returns:
-        quaternions with real part first, as tensor of shape (..., 4).
+    :returns: quaternions with real part first, as tensor of shape (..., 4).
+    :rtype: torch.Tensor
     """
     angles = torch.norm(axis_angle, p=2, dim=-1, keepdim=True)
     half_angles = 0.5 * angles
@@ -485,19 +490,18 @@ def axis_angle_to_quaternion(axis_angle):
     return quaternions
 
 
-def quaternion_to_axis_angle(quaternions):
+def quaternion_to_axis_angle(quaternions: torch.Tensor) -> torch.Tensor:
     """
     Convert rotations given as quaternions to axis/angle.
 
-    Args:
-        quaternions: quaternions with real part first,
-            as tensor of shape (..., 4).
+    :param quaternions: quaternions with real part first, as tensor of shape (..., 4).
+    :type quaternions: torch.Tensor
 
-    Returns:
-        Rotations given as a vector in axis angle form, as a tensor
+    :returns: Rotations given as a vector in axis angle form, as a tensor
             of shape (..., 3), where the magnitude is the angle
             turned anticlockwise in radians around the vector's
             direction.
+    :rtype: torch.Tensor
     """
     norms = torch.norm(quaternions[..., 1:], p=2, dim=-1, keepdim=True)
     half_angles = torch.atan2(norms, quaternions[..., :1])
@@ -520,11 +524,12 @@ def rotation_6d_to_matrix(d6: torch.Tensor) -> torch.Tensor:
     """
     Converts 6D rotation representation by Zhou et al. [1] to rotation matrix
     using Gram--Schmidt orthogonalisation per Section B of [1].
-    Args:
-        d6: 6D rotation representation, of size (*, 6)
 
-    Returns:
-        batch of rotation matrices of size (*, 3, 3)
+    :param d6: 6D rotation representation, of size (*, 6)
+    :type d6: torch.Tensor
+
+    :returns: batch of rotation matrices of size (*, 3, 3)
+    :rtype: torch.Tensor
 
     [1] Zhou, Y., Barnes, C., Lu, J., Yang, J., & Li, H.
     On the Continuity of Rotation Representations in Neural Networks.
@@ -544,11 +549,12 @@ def matrix_to_rotation_6d(matrix: torch.Tensor) -> torch.Tensor:
     """
     Converts rotation matrices to 6D rotation representation by Zhou et al. [1]
     by dropping the last row. Note that 6D representation is not unique.
-    Args:
-        matrix: batch of rotation matrices of size (*, 3, 3)
 
-    Returns:
-        6D rotation representation, of size (*, 6)
+    :param matrix: batch of rotation matrices of size (*, 3, 3)
+    :type matrix: torch.Tensor
+
+    :returns: 6D rotation representation, of size (*, 6)
+    :rtype: torch.Tensor
 
     [1] Zhou, Y., Barnes, C., Lu, J., Yang, J., & Li, H.
     On the Continuity of Rotation Representations in Neural Networks.
