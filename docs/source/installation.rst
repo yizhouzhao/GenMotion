@@ -28,7 +28,7 @@ or you can install GenMotion directly from the pip library with:
 
 
 Requirements
---------------
+------------
 
 We developed this package under the same configuration as `Pytorch <https://pytorch.org/get-started/locally/>`_
 

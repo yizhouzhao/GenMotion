@@ -5,5 +5,5 @@ Rendering in 3D computer graphics software
     render/api_maya.rst
     render/api_blender.rst
     render/api_c4d.rst
-    
+    render/api_python.rst
     
