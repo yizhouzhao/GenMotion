@@ -1,4 +1,4 @@
-Datasets
+Dataset overview
 ========================
 
 Large datasets are the essential for the success of recent advances in human motion synthesis using deep learning. There are many different available datasets from humam motion captures: they may use different rigging and parameterization of the body. Here, we list the datasets which are support in `GenMotion` for training, testing and sampling animation. 

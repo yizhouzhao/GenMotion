@@ -23,6 +23,7 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
    installation
    model
    dataset
+   render
 
 .. toctree::
    :maxdepth: 2
