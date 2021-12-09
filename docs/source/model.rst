@@ -22,6 +22,10 @@ Variational autoencoders (VAEs) are a deep learning technique for learning laten
 
 VAEs can also be applied into generation human motion by combining samples from a variational approximation to the intractable posterior :cite:`habibie2017recurrent`, or be integrated into sequence generation tasks from a Variational Recurrent Neural Network (VRNN) :cite:`chung2015recurrent`.
 
+Conditional Variational Autoencoder
+################################################################
+
+
 Transformer
 ################################################################
 
@@ -29,6 +33,8 @@ Transformer designed for the motion synthesis task works as a sequence-to-sequen
 
 Transformer VAE
 ################################################################
+Transformer-VAE's learn smooth latent spaces of discrete sequences without any explicit rules in their decoders. This can be used for program synthesis, drug discovery, music generation and motion synthesis.
+
 
 
 .. bibliography:: refs.bib
