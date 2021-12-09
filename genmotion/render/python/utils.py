@@ -525,10 +525,10 @@ def rotation_6d_to_matrix(d6: torch.Tensor) -> torch.Tensor:
     Converts 6D rotation representation by Zhou et al. [1] to rotation matrix
     using Gram--Schmidt orthogonalisation per Section B of [1].
 
-    :param d6: 6D rotation representation, of size (*, 6)
+    :param d6: 6D rotation representation, of size (x, 6)
     :type d6: torch.Tensor
 
-    :returns: batch of rotation matrices of size (*, 3, 3)
+    :returns: batch of rotation matrices of size (x, 3, 3)
     :rtype: torch.Tensor
 
     [1] Zhou, Y., Barnes, C., Lu, J., Yang, J., & Li, H.
@@ -550,10 +550,10 @@ def matrix_to_rotation_6d(matrix: torch.Tensor) -> torch.Tensor:
     Converts rotation matrices to 6D rotation representation by Zhou et al. [1]
     by dropping the last row. Note that 6D representation is not unique.
 
-    :param matrix: batch of rotation matrices of size (*, 3, 3)
+    :param matrix: batch of rotation matrices of size (x, 3, 3)
     :type matrix: torch.Tensor
 
-    :returns: 6D rotation representation, of size (*, 6)
+    :returns: 6D rotation representation, of size (x, 6)
     :rtype: torch.Tensor
 
     [1] Zhou, Y., Barnes, C., Lu, J., Yang, J., & Li, H.
