@@ -50,3 +50,13 @@ HumanAct12
    :alt: Licence
 
 `HumanAct12 <https://ericguo5513.github.io/action-to-motion/#data>`_ is a new 3D human motion dataset adopted from the polar image and 3D pose dataset PHSPD, with proper temporal cropping and action annotating. Statistically, there are 1191 3D motion clips(and 90,099 poses in total) which are categorized into 12 action classes, and 34 fine-grained sub-classes. The action types includes daily actions such as walk, run, sit down, jump up, warm up, etc. Fine-grained action types contain more specific information like Warm up by bowing left side, Warm up by pressing left leg, etc.
+
+
+Human3.6m
+#################################
+.. image:: https://img.shields.io/badge/license-academic_only-orange
+   :target: http://vision.imar.ro/human3.6m/eula.php
+   :alt: Licence
+
+The `Human3.6M <http://vision.imar.ro/human3.6m/readme_challenge.php>`_ dataset is one of the largest motion capture datasets, which consists of 3.6 million human poses and corresponding images captured by a high-speed motion capture system. There are 4 high-resolution progressive scan cameras to acquire video data at 50 Hz. Human3.6M  is acquired by recording the performance
+of 5 female and 6 male subjects, under 4 different viewpoints, for training realistic human sensing systems and for evaluating the next generation of human pose estimation models and algorithms.

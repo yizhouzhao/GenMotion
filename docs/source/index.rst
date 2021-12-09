@@ -31,7 +31,6 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
 
    genmotion_tutorials
    genmotion_api
-   citation   
 
 Library overview
 ----------------
