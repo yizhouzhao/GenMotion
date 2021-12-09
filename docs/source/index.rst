@@ -21,18 +21,17 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
    :caption: Getting Started
 
    installation
+   model
+   dataset
 
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: User Guide
 
-   dataset
-   model
-   genmotion_api 
    genmotion_tutorials
-   citation
-
+   genmotion_api
+   citation   
 
 Library overview
 ----------------
