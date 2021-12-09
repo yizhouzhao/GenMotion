@@ -20,6 +20,10 @@ Variational Autoencoder
 
 Variational autoencoders (VAEs) are a deep learning technique for learning latent representations. They have also been used to draw images, achieve state-of-the-art results in semi-supervised learning, as well as interpolate between sentences. 
 
-VAEs can also be applied into generation human motion by combining samples from a variational approximation to the intractable posterior :cite:`habibie2017recurrent`, or be integrated into sequence generation tasks from a Variational Recurrent Neural Network (VRNN) :cite:`motegi2018human`.
+VAEs can also be applied into generation human motion by combining samples from a variational approximation to the intractable posterior :cite:`habibie2017recurrent`, or be integrated into sequence generation tasks from a Variational Recurrent Neural Network (VRNN) :cite:`chung2015recurrent`.
+
+Transformer
+################################################################
+
 
 .. bibliography:: refs.bib
