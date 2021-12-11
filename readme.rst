@@ -68,14 +68,15 @@ Citations
 
 If you use GenMotion in your research, please consider citing it.
 
-@article{xxxx/xxxx,
-  author  = {Yizhou Zhao, Wensi Ai, Liang Qiu, Pan Lu, Feng Shi, Tian Han, Song-Chun Zhu},
-  title   = {GenMotion: Data-driven Motion Generators for Real-time
-Animation Synthesis},
-  journal = {Journal of Machine Learning Research},
-  year    = {2021},
-  volume  = {xx},
-  number  = {xx},
-  pages   = {xx},
-  url     = {xxxx}
-}
+.. code::
+
+   @article{xxxx/xxxx,
+      author  = {Yizhou Zhao, Wensi Ai, Liang Qiu, Pan Lu, Feng Shi, Tian Han, Song-Chun Zhu},
+      title   = {GenMotion: Data-driven Motion Generators for Real-time Animation Synthesis},
+      journal = {Journal of Machine Learning Research},
+      year    = {2021},
+      volume  = {xx},
+      number  = {xx},
+      pages   = {xx},
+      url     = {xxxx}
+   }
