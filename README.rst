@@ -19,7 +19,7 @@ GenMotion
    :alt: Licence
    
 
-.. figure:: docs/images/cover.png
+.. image:: https://raw.githubusercontent.com/yizhouzhao/genmotion/master/docs/images/cover.png
    :alt: Title image
    :width: 80%
 
