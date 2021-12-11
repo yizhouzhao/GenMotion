@@ -1,13 +1,17 @@
 # Configuration file for the Sphinx documentation builder.
 
+from genmotion import __version__
+
 # -- Project information
 
 project = 'GenMotion'
 copyright = '2021, UCLA'
 author = 'Yizhou Zhao, Wensi Ai'
 
-release = '0.1'
-version = '0.0.4'
+# The short X.Y version.
+version = '.'.join(__version__.split('.')[:-1])
+# The full version, including alpha/beta/rc tags.
+release = __version__
 
 # -- General configuration
 
