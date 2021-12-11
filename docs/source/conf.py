@@ -4,10 +4,10 @@
 
 project = 'GenMotion'
 copyright = '2021, UCLA'
-author = 'xxx'
+author = 'Yizhou Zhao, Wensi Ai'
 
 release = '0.1'
-version = '0.1.0'
+version = '0.0.4'
 
 # -- General configuration
 
