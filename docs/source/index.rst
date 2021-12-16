@@ -33,6 +33,13 @@ The source code is available on `Github <https://https://github.com/yizhouzhao/G
    genmotion_tutorials
    genmotion_api
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Demo
+
+   demo/Conditional Anmation Making
+
 Library overview
 ----------------
 
