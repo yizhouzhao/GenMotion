@@ -162,6 +162,6 @@ docs/source/_build
 # folder
 thirdParty/
 dataset/Mocap/
-dataset/SMPL/
+#dataset/SMPL/
 pretrained/
 genmotion/pretrained_models/
