@@ -12,8 +12,11 @@ from ..datasets.ntu13 import action2motion_joints
 #from src.config import SMPL_MODEL_PATH, JOINT_REGRESSOR_TRAIN_EXTRA
 
 import os
-
-SMPL_DATA_PATH = "../dataset/SMPL/models/smpl/"
+try:
+    import genmotion
+    SMPL_DATA_PATH = genmotion.__path__[0] + "../dataset/SMPL/models/smpl/"
+except:
+    SMPL_DATA_PATH = "/../dataset/SMPL/models/smpl/"
 
 SMPL_KINTREE_PATH = os.path.join(SMPL_DATA_PATH, "kintree_table.pkl")
 SMPL_MODEL_PATH = os.path.join(SMPL_DATA_PATH, "SMPL_NEUTRAL.pkl")
