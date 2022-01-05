@@ -10,6 +10,9 @@ HDM05
    :target: https://creativecommons.org/licenses/by-sa/3.0/
    :alt: Licence
 
+.. image:: ../images/hdm05.jpg
+   :alt: Licence
+
 `HDM05 <http://resources.mpi-inf.mpg.de/HDM05/index.html>`_  contains more than three hours, more than 70 motion classes in 10 to 50 realizations executed by various actors of systematically recorded and well-documented motion capture data in the C3D as well as in the ASF/AMC data format.
 
 ..
