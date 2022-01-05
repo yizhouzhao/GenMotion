@@ -14,7 +14,7 @@ from ..datasets.ntu13 import action2motion_joints
 import os
 try:
     import genmotion
-    SMPL_DATA_PATH = genmotion.__path__[0] + "../dataset/SMPL/models/smpl/"
+    SMPL_DATA_PATH = genmotion.__path__[0] + "/../dataset/SMPL/models/smpl/"
 except:
     SMPL_DATA_PATH = "/../dataset/SMPL/models/smpl/"
 
