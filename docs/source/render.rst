@@ -9,12 +9,21 @@ in several popular character animation making tools: Autodesk Maya, Maxon Cinema
 
 Autodesk Maya
 -------------
+.. image:: ../images/maya.png
+   :width: 400
+   :alt: Maya
+
 Maya is an application used to generate 3D assets for use in film, television, games, and commercials. 
 Users define a virtual workspace (scene) to implement and edit media of a particular project. 
 Maya is one of the most popular tools for rendering in film, animation, and arts industry. 
 
 Blender
 -------
+
+.. image:: ../images/blender.png
+   :width: 400
+   :alt: Blender
+
 Blender is a free and open-source 3D computer graphics software toolset used for creating animated films, visual effects, art, 
 3D printed models, motion graphics, interactive 3D applications, virtual reality, and computer games. 
 Blender's features include 3D modeling, UV unwrapping, texturing, raster graphics editing, rigging and skinning, fluid and smoke simulation, 
@@ -24,6 +33,10 @@ kernel.
 
 Cinema4D
 --------
+.. image:: ../images/c4d.jpg
+   :width: 400
+   :alt: C4D
+
 Cinema 4D is a professional 3D modeling, animation, simulation and rendering software solution. Its fast, 
 powerful, flexible and stable toolset make 3D workflows more accessible and efficient for design, motion graphics, 
 VFX, AR/MR/VR, game development and all types of visualization professionals. 
