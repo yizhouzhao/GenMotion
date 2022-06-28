@@ -9,4 +9,5 @@ How to render generated animations in Maya
    
    maya/Maya render AMASS animations
    maya/Maya render HDM(or Mocap) animations
+   maya/Maya convert AMASS to USD
    
