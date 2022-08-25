@@ -2,7 +2,7 @@ ipykernel
 nbsphinx
 tqdm
 numpy
-sphinxcontrib-bibtex<2.0.0 
+sphinxcontrib-bibtex 
 pyrender
 trimesh
 imageio-ffmpeg
