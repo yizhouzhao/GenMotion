@@ -21,11 +21,10 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
     'sphinx.ext.autosectionlabel',
-    'sphinxcontrib.bibtex',
+    # 'sphinxcontrib.bibtex',
     'nbsphinx',
 ]
 
-bibtex_bibfiles = ['refs.bib']
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
