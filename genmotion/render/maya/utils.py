@@ -44,6 +44,26 @@ class MayaController:
         ret = data.decode("utf-8")
         return ret
 
+    def SendPythonCommand(self, command: str):
+        """Send a string command to the socket server (Maya side)
+
+        :param command: a string command
+        :type command: str
+        """
+        # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # client.connect(ADDR)
+        command = 'python("{}")'.format(command)
+        command = command.encode()  # the command from external editor to maya
+
+        my_message = command
+        self.client.send(my_message)
+        data = self.client.recv(16384)  # receive the result info
+        # client.close()
+        # print(data)
+        # ret = str(data.decode(encoding="ASCII"))
+        ret = data.decode("utf-8")
+        return ret
+
     def Close(self):
         """Close socket client
         """
