@@ -22,7 +22,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.autosectionlabel',
     # 'sphinxcontrib.bibtex',
-    'nbsphinx',
+    'myst_nb',
 ]
 
 
