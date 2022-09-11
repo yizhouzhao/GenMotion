@@ -7,7 +7,3 @@ python:
 
 sphinx:
   fail_on_warning: true
-
-formats:
-  - pdf
-  - epub
