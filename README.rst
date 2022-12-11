@@ -29,6 +29,10 @@ It enables easy dataset loading and experiment sharing for synthesizing skeleton
 
 You can find the full ducumentation and tutorials `here <https://genmotion.readthedocs.io/en/latest/>`_.
 
+.. image:: https://raw.githubusercontent.com/yizhouzhao/genmotion/master/docs/images/genmotion_model.PNG
+   :alt: Title model
+   :width: 80%
+   
 .. contents:: **Contents of this document:**
    :depth: 2
 
