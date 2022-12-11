@@ -70,13 +70,9 @@ If you use GenMotion in your research, please consider citing it.
 
 .. code::
 
-   @article{xxxx/xxxx,
-      author  = {Yizhou Zhao, Wensi Ai, Liang Qiu, Pan Lu, Feng Shi, Tian Han, Song-Chun Zhu},
-      title   = {GenMotion: Data-driven Motion Generators for Real-time Animation Synthesis},
-      journal = {Journal of Machine Learning Research},
-      year    = {2021},
-      volume  = {xx},
-      number  = {xx},
-      pages   = {xx},
-      url     = {xxxx}
+   @article{zhao2021genmotion,
+     title={GenMotion: Data-driven Motion Generators for Real-time Animation Synthesis},
+     author={Zhao, Yizhou and Ai, Wensi and Qiu, Liang and Lu, Pan and Shi, Feng and Han, Tian and Zhu, Song-Chun},
+     journal={arXiv preprint arXiv:2112.06060},
+     year={2021}
    }
